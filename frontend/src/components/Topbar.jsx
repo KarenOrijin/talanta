@@ -1,36 +1,30 @@
 import React from 'react';
 import { PANEL_TITLES } from '../data.js';
 
-export default function Topbar({ activePanel, role }) {
-  const title = PANEL_TITLES[activePanel] || 'Dashboard';
-  const [section, page] = title.split(' / ');
+export default function Topbar({ activePanel }) {
+  const full  = PANEL_TITLES[activePanel] || 'Overview / Dashboard';
+  const parts = full.split(' / ');
+  const title = parts[0];
+  const sub   = parts[1];
 
   return (
-    <header className="topbar">
-      <div className="topbar-left">
-        <div className="topbar-title">
-          <span className="topbar-section">{section}</span>
-          {page && <span className="topbar-page"> / {page}</span>}
-        </div>
+    <div className="topbar">
+      <div className="topbar-title">
+        {title}{sub && <span> / {sub}</span>}
       </div>
-      <div className="topbar-right">
-        <div className="search-box">
-          <span className="search-icon">🔍</span>
-          <input className="search-input" type="text" placeholder="Search projects, donors, countries…" />
-        </div>
+      <div className="search-box">
+        <span style={{ color: 'var(--ink4)', fontSize: 13 }}>⌕</span>
+        <input type="text" placeholder="Search projects, donors, countries…" />
+      </div>
+      <div className="topbar-actions">
         <div className="status-pill">
-          <span className="pulse-dot"></span>
+          <div className="status-dot"></div>
           IATI Live
         </div>
-        <button className="topbar-btn" title="Notifications">
-          <span>🔔</span>
-          <span className="notif-dot"></span>
-        </button>
-        <button className="topbar-btn" title="Download">
-          <span>⬇</span>
-        </button>
+        <div className="tb-btn tb-notif" title="Alerts">🔔</div>
+        <div className="tb-btn" title="Export">↓</div>
         <div className="avatar">SA</div>
       </div>
-    </header>
+    </div>
   );
 }

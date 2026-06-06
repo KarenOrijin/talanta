@@ -1,50 +1,51 @@
 import React from 'react';
 import { COMPLIANCE_DONORS } from '../../data.js';
 
-function KpiCard({ label, value, sub, subClass }) {
-  return (
-    <div className="kpi-card">
-      <div className="kpi-value">{value}</div>
-      <div className="kpi-label">{label}</div>
-      {sub && <div className={`kpi-sub ${subClass || ''}`}>{sub}</div>}
-    </div>
-  );
-}
+function compColor(pct) { return pct >= 90 ? '#1D9E75' : pct >= 75 ? '#EF9F27' : '#E24B4A'; }
+function compBadge(pct) { return pct >= 90 ? 'badge-green' : pct >= 75 ? 'badge-amber' : 'badge-red'; }
+function compLabel(pct) { return pct >= 90 ? 'Compliant' : pct >= 75 ? 'Partial' : 'Non-compliant'; }
 
 export default function Compliance() {
   return (
-    <div className="panel-content">
-      <div className="kpi-row">
-        <KpiCard label="Overall Compliance" value="87%" sub="weighted average" />
-        <KpiCard label="Non-compliant" value="11" sub="⚠ donors below threshold" subClass="kpi-warn" />
-        <KpiCard label="Avg Report Latency" value="12d" sub="days to publish after close" />
+    <div>
+      <div className="page-header">
+        <h1>Compliance</h1>
+        <p>IATI reporting compliance by donor and implementer — track fiduciary standards and overdue submissions</p>
       </div>
 
-      <div className="card">
-        <div className="card-header">
-          <span className="card-title">IATI compliance by donor</span>
-          <button className="act-btn">Send reminders</button>
+      <div className="kpi-row">
+        <div className="kpi">
+          <div className="kpi-label">Overall compliance</div>
+          <div className="kpi-val">87%</div>
+          <div className="kpi-sub">IATI-linked orgs</div>
         </div>
-        <div className="comp-list">
-          {COMPLIANCE_DONORS.map(d => {
-            const color = d.pct >= 90 ? '#1D9E75' : d.pct >= 75 ? '#EF9F27' : '#E05252';
-            const badgeClass = d.pct >= 90 ? 'badge-green' : d.pct >= 75 ? 'badge-amber' : 'badge-red';
-            const badgeLabel = d.pct >= 90 ? 'Compliant' : d.pct >= 75 ? 'Partial' : 'Non-compliant';
-            return (
-              <div key={d.name} className="comp-row">
-                <div className="comp-name">{d.name}</div>
-                <div className="comp-track">
-                  <div
-                    className="comp-fill"
-                    style={{ width: `${d.pct}%`, background: color }}
-                  ></div>
-                </div>
-                <div className="comp-pct" style={{ color }}>{d.pct}%</div>
-                <span className={`badge ${badgeClass}`}>{badgeLabel}</span>
-              </div>
-            );
-          })}
+        <div className="kpi warn">
+          <div className="kpi-label">Non-compliant</div>
+          <div className="kpi-val">11</div>
+          <div className="kpi-sub warn">of 89 organisations</div>
         </div>
+        <div className="kpi">
+          <div className="kpi-label">Avg. report latency</div>
+          <div className="kpi-val">12d</div>
+          <div className="kpi-sub">from deadline</div>
+        </div>
+      </div>
+
+      <div className="card g-full">
+        <div className="card-hd">
+          <h3>IATI compliance by donor</h3>
+          <span className="card-action">Send reminders</span>
+        </div>
+        {COMPLIANCE_DONORS.map(d => (
+          <div key={d.name} className="comp-row">
+            <div className="comp-name">{d.name}</div>
+            <div className="comp-track">
+              <div className="comp-fill" style={{ width: `${d.pct}%`, background: compColor(d.pct) }}></div>
+            </div>
+            <div className="comp-val">{d.pct}%</div>
+            <span className={`badge ${compBadge(d.pct)}`}>{compLabel(d.pct)}</span>
+          </div>
+        ))}
       </div>
     </div>
   );

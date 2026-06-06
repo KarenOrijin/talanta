@@ -1,107 +1,126 @@
 import React from 'react';
-import { DONORS, DISB_EVENTS } from '../../data.js';
+import { DONORS, SECTORS, DISB_EVENTS } from '../../data.js';
 
-function KpiCard({ label, value, sub, subClass }) {
-  return (
-    <div className="kpi-card">
-      <div className="kpi-value">{value}</div>
-      <div className="kpi-label">{label}</div>
-      {sub && <div className={`kpi-sub ${subClass || ''}`}>{sub}</div>}
-    </div>
-  );
-}
+const MAX_DONOR = Math.max(...DONORS.map(d => d.v));
+
+const INSTRUMENTS = [
+  { label: 'Grants',            val: '$2.02B — 42%', pct: 42, c: 'var(--green)' },
+  { label: 'Concessional loans', val: '$1.35B — 28%', pct: 28, c: 'var(--blue)' },
+  { label: 'Market-rate loans',  val: '$869M — 18%',  pct: 18, c: 'var(--amber)' },
+  { label: 'Guarantees',         val: '$578M — 12%',  pct: 12, c: 'var(--green-mid)' },
+];
 
 export default function FinanceFlows() {
   return (
-    <div className="panel-content">
+    <div>
+      <div className="page-header">
+        <h1>Finance Flows</h1>
+        <p>Track where every dollar is committed, disbursed, and verified across donors and recipients</p>
+      </div>
+
       <div className="kpi-row">
-        <KpiCard label="Total Mobilised" value="$4.82B" sub="across all instruments" />
-        <KpiCard label="Disbursed" value="$2.41B" sub="50.1% disbursement rate" />
-        <KpiCard label="Co-financing Ratio" value="3.2x" sub="leverage on public funds" />
-        <KpiCard label="Undisbursed" value="$2.41B" sub="⚠ pending release" subClass="kpi-warn" />
+        <div className="kpi">
+          <div className="kpi-label">Total mobilised</div>
+          <div className="kpi-val">$4.82B</div>
+          <div className="kpi-sub up">↑ 12% YoY</div>
+        </div>
+        <div className="kpi">
+          <div className="kpi-label">Disbursed</div>
+          <div className="kpi-val">$2.41B</div>
+          <div className="kpi-sub">50% of committed</div>
+        </div>
+        <div className="kpi">
+          <div className="kpi-label">Co-financing ratio</div>
+          <div className="kpi-val">3.2×</div>
+          <div className="kpi-sub up">blended leverage</div>
+        </div>
+        <div className="kpi warn">
+          <div className="kpi-label">Undisbursed</div>
+          <div className="kpi-val">$2.41B</div>
+          <div className="kpi-sub warn">⚠ pending 34 reports</div>
+        </div>
       </div>
 
       <div className="g3">
-        <div className="card" style={{ gridColumn: 'span 2' }}>
-          <div className="card-header">
-            <span className="card-title">Donor portfolios</span>
+        {/* Donor portfolios */}
+        <div className="card">
+          <div className="card-hd">
+            <h3>Donor portfolios</h3>
+            <span className="card-hd-sub">committed USD</span>
           </div>
-          <div className="flow-list">
+          <div className="card-scroll">
             {DONORS.map(d => (
               <div key={d.abbr} className="flow-row">
-                <div className="flow-abbr" style={{ background: d.c + '22', color: d.c }}>{d.abbr}</div>
-                <div className="flow-name">{d.n}</div>
-                <div className="flow-track">
-                  <div className="flow-bar" style={{ width: `${d.pct}%`, background: d.c }}></div>
+                <div className="flow-dot" style={{ background: d.c }}></div>
+                <div style={{ flex: 1 }}>
+                  <div className="flow-name">{d.n}</div>
                 </div>
-                <div className="flow-val">${d.v}M</div>
-                <div className="flow-pct">{d.pct}%</div>
+                <div className="flow-bar-wrap">
+                  <div className="flow-bar-track">
+                    <div className="flow-bar-fill" style={{ width: `${Math.round(d.v / MAX_DONOR * 100)}%`, background: d.c }}></div>
+                  </div>
+                </div>
+                <div className="flow-amt">${d.v}M</div>
               </div>
             ))}
           </div>
         </div>
 
+        {/* Grant/debt split + sector */}
         <div className="card">
-          <div className="card-header">
-            <span className="card-title">Grant / Debt split</span>
-          </div>
-          <div className="instrument-bars">
-            {[
-              { label: 'Grants', pct: 42, color: '#1D9E75' },
-              { label: 'Concessional loans', pct: 28, color: '#378ADD' },
-              { label: 'Market-rate loans', pct: 18, color: '#EF9F27' },
-              { label: 'Guarantees', pct: 12, color: '#5DCAA5' },
-            ].map(item => (
-              <div key={item.label} className="instr-row">
-                <div className="instr-label">{item.label}</div>
-                <div className="instr-track">
-                  <div className="instr-fill" style={{ width: `${item.pct}%`, background: item.color }}></div>
-                </div>
-                <div className="instr-pct">{item.pct}%</div>
+          <div className="card-hd"><h3>Grant vs. debt split</h3></div>
+          {INSTRUMENTS.map(item => (
+            <div key={item.label} style={{ marginBottom: 14 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 5, fontSize: 12, color: 'var(--ink3)' }}>
+                <span>{item.label}</span>
+                <span style={{ fontWeight: 500, color: 'var(--ink)' }}>{item.val}</span>
               </div>
-            ))}
-          </div>
-          <div className="sector-mini-list" style={{ marginTop: '1rem' }}>
-            <div className="card-sub-title">By sector</div>
-            {[
-              { n: 'Renewable Energy', v: '$1,820M', c: '#1D9E75' },
-              { n: 'Climate Adaptation', v: '$640M', c: '#378ADD' },
-              { n: 'Forests & Land', v: '$480M', c: '#639922' },
-              { n: 'Water & WASH', v: '$340M', c: '#5DCAA5' },
-            ].map(s => (
-              <div key={s.n} className="sector-mini-row">
-                <span className="sector-dot" style={{ background: s.c }}></span>
-                <span className="sector-mini-name">{s.n}</span>
-                <span className="sector-mini-val">{s.v}</span>
+              <div style={{ height: 8, background: 'var(--surface2)', borderRadius: 4, overflow: 'hidden' }}>
+                <div style={{ width: `${item.pct}%`, height: 8, background: item.c, borderRadius: 4 }}></div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+          <hr className="green-rule" />
+          <div className="section-lbl">Sector allocation</div>
+          {SECTORS.map(s => (
+            <div key={s.n} style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 5 }}>
+              <div style={{ width: 8, height: 8, borderRadius: '50%', background: s.c, flexShrink: 0 }}></div>
+              <div style={{ fontSize: 11, color: 'var(--ink3)', flex: 1 }}>{s.n}</div>
+              <div style={{ fontSize: 11, fontWeight: 500, color: 'var(--ink)' }}>${s.v}M</div>
+            </div>
+          ))}
         </div>
       </div>
 
-      <div className="card" style={{ marginTop: '1rem' }}>
-        <div className="card-header">
-          <span className="card-title">Disbursement timeline</span>
-          <span className="card-badge badge-blue">{DISB_EVENTS.length} recent events</span>
+      {/* Disbursement timeline */}
+      <div className="card g-full">
+        <div className="card-hd">
+          <h3>Disbursement timeline</h3>
+          <span className="card-action">Export CSV</span>
         </div>
         <table className="data-table">
           <thead>
             <tr>
               <th>Date</th>
-              <th>Amount</th>
               <th>Project</th>
               <th>IATI ID</th>
+              <th>Amount</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            {DISB_EVENTS.map((ev, i) => (
+            {DISB_EVENTS.map((e, i) => (
               <tr key={i}>
-                <td>{ev.date}</td>
+                <td style={{ color: 'var(--ink4)' }}>{e.date}</td>
                 <td>
-                  <span style={{ color: ev.c, fontWeight: 600 }}>{ev.amt}</span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+                    <div style={{ width: 7, height: 7, borderRadius: '50%', background: e.c, flexShrink: 0 }}></div>
+                    {e.proj}
+                  </div>
                 </td>
-                <td>{ev.proj}</td>
-                <td><span className="mono">{ev.id}</span></td>
+                <td><span className="mono">{e.id}</span></td>
+                <td style={{ fontWeight: 500, color: 'var(--green)' }}>{e.amt}</td>
+                <td><span className="badge badge-green">Disbursed</span></td>
               </tr>
             ))}
           </tbody>

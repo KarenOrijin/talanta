@@ -18,7 +18,7 @@ export default function App() {
   const [alertVisible, setAlertVisible] = useState(true);
 
   return (
-    <div className="app-shell">
+    <div className="app">
       <Sidebar
         activePanel={activePanel}
         onNav={setActivePanel}
@@ -26,19 +26,17 @@ export default function App() {
         onRoleChange={setRole}
       />
       <div className="main">
-        <Topbar activePanel={activePanel} role={role} />
+        <Topbar activePanel={activePanel} />
         <div className="content-area">
-          {activePanel === 'overview' && (
-            <Overview alertVisible={alertVisible} onDismissAlert={() => setAlertVisible(false)} />
-          )}
-          {activePanel === 'flows' && <FinanceFlows />}
-          {activePanel === 'projects' && <Projects />}
+          {activePanel === 'overview'     && <Overview alertVisible={alertVisible} onDismissAlert={() => setAlertVisible(false)} />}
+          {activePanel === 'flows'        && <FinanceFlows />}
+          {activePanel === 'projects'     && <Projects />}
           {activePanel === 'verification' && <Verification />}
-          {activePanel === 'risk' && <RiskMonitor />}
-          {activePanel === 'impact' && <ImpactTracker />}
-          {activePanel === 'reporting' && <Reporting role={role} />}
-          {activePanel === 'compliance' && <Compliance />}
-          {activePanel === 'access' && <FundingAccess />}
+          {activePanel === 'risk'         && <RiskMonitor />}
+          {activePanel === 'impact'       && <ImpactTracker />}
+          {activePanel === 'reporting'    && <Reporting role={role} />}
+          {activePanel === 'compliance'   && <Compliance />}
+          {activePanel === 'access'       && <FundingAccess />}
         </div>
         <BottomBar />
       </div>

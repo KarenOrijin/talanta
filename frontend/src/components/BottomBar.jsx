@@ -2,18 +2,22 @@ import React from 'react';
 
 export default function BottomBar() {
   return (
-    <footer className="bottom-bar">
-      <div className="bottom-bar-left">
-        <span className="status-dot green"></span>
-        <span>IATI Registry synced 4m ago</span>
-        <span className="status-dot blue" style={{ marginLeft: '1rem' }}></span>
-        <span>GCF database live</span>
-        <span className="status-dot amber" style={{ marginLeft: '1rem' }}></span>
-        <span>3 alerts pending</span>
+    <div className="bottom-bar">
+      <div className="bb-item">
+        <div className="bb-dot" style={{ background: 'var(--green)' }}></div>
+        IATI Registry synced 4m ago
       </div>
-      <div className="bottom-bar-right">
-        Talanta v1.0 · © 2025 · Africa Climate Finance Intelligence Platform
+      <div className="bb-item">
+        <div className="bb-dot" style={{ background: 'var(--blue)' }}></div>
+        GCF database live
       </div>
-    </footer>
+      <div className="bb-item">
+        <div className="bb-dot" style={{ background: 'var(--amber)' }}></div>
+        3 alerts pending
+      </div>
+      <div style={{ marginLeft: 'auto', fontSize: 10, color: 'var(--ink4)' }}>
+        Talanta v1.0 · © 2025 · <span style={{ color: 'var(--green)' }}>Africa Climate Finance Intelligence Platform</span>
+      </div>
+    </div>
   );
 }

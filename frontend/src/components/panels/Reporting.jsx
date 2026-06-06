@@ -1,64 +1,68 @@
 import React from 'react';
-import { GOV_ACTIONS } from '../../data.js';
-
-function KpiCard({ label, value, sub, subClass }) {
-  return (
-    <div className="kpi-card">
-      <div className="kpi-value">{value}</div>
-      <div className="kpi-label">{label}</div>
-      {sub && <div className={`kpi-sub ${subClass || ''}`}>{sub}</div>}
-    </div>
-  );
-}
+import { GOV_ACTIONS, ROLE_LABELS } from '../../data.js';
 
 const STANDARDS = [
-  { name: 'IATI', status: 'Live', badge: 'badge-green', desc: 'International Aid Transparency Initiative — full XML publishing' },
-  { name: 'GCF', status: 'Live', badge: 'badge-green', desc: 'Green Climate Fund reporting templates — auto-populated' },
-  { name: 'OECD-DAC', status: 'Beta', badge: 'badge-amber', desc: 'Development Assistance Committee CRS++ format — in beta' },
-  { name: 'CSRD / ISSB', status: 'Q3 2025', badge: 'badge-amber', desc: 'EU Corporate Sustainability Reporting — roadmap Q3 2025' },
+  { icon: '📋', title: 'IATI Standard',           desc: 'Auto-publish XML to IATI Registry',         badge: 'badge-green', label: 'Live',     bg: 'var(--blue-light)' },
+  { icon: '🌱', title: 'GCF Performance Framework', desc: 'Mapped to GCF result areas',               badge: 'badge-green', label: 'Live',     bg: 'var(--green-light)' },
+  { icon: '📊', title: 'OECD-DAC CRS',             desc: 'Rio markers + climate tagging',             badge: 'badge-amber', label: 'Beta',     bg: 'var(--amber-light)' },
+  { icon: '📰', title: 'CSRD / ISSB',              desc: 'ESG disclosure for EU companies',           badge: 'badge-amber', label: 'Q3 2025',  bg: 'var(--blue-light)' },
 ];
 
 export default function Reporting({ role }) {
   return (
-    <div className="panel-content">
+    <div>
+      <div className="page-header">
+        <h1>Reports & IATI Publishing</h1>
+        <p>Submit, approve, and publish climate finance reports — auto-formatted for IATI, GCF, and OECD-DAC standards</p>
+      </div>
+
       <div className="kpi-row">
-        <KpiCard label="Total Reports" value="634" sub="all formats" />
-        <KpiCard label="Pending" value="48" sub="⚠ awaiting submission" subClass="kpi-warn" />
-        <KpiCard label="IATI Published" value="612" sub="to iatiregistry.org" />
+        <div className="kpi">
+          <div className="kpi-label">Reports submitted</div>
+          <div className="kpi-val">634</div>
+          <div className="kpi-sub">last 12 months</div>
+        </div>
+        <div className="kpi warn">
+          <div className="kpi-label">Pending review</div>
+          <div className="kpi-val">48</div>
+          <div className="kpi-sub warn">⚠ overdue &gt; 30 days</div>
+        </div>
+        <div className="kpi">
+          <div className="kpi-label">IATI published</div>
+          <div className="kpi-val">612</div>
+          <div className="kpi-sub">96.5% sync rate</div>
+        </div>
       </div>
 
       <div className="g2">
         <div className="card">
-          <div className="card-header">
-            <span className="card-title">Pending actions</span>
-            {role === 'gov' && <span className="card-badge badge-amber">Gov view</span>}
+          <div className="card-hd">
+            <h3>Pending actions</h3>
+            <span className="card-hd-sub">— {ROLE_LABELS[role] || 'Government'} view</span>
           </div>
-          <div className="action-list">
-            {GOV_ACTIONS.map((a, i) => (
-              <div key={i} className="action-row">
-                <div className="action-icon" style={{ background: a.bg, color: a.col }}>
-                  {a.icon}
-                </div>
-                <div className="action-body">
-                  <div className="action-title">{a.title}</div>
-                  <div className="action-hint">{a.hint}</div>
-                </div>
-                <button className="act-btn">Act</button>
+          {GOV_ACTIONS.map((a, i) => (
+            <div key={i} className="action-row">
+              <div className="action-icon" style={{ background: a.bg, color: a.col }}>{a.icon}</div>
+              <div className="action-text">
+                <div className="action-title">{a.title}</div>
+                <div className="action-hint">{a.hint}</div>
               </div>
-            ))}
-          </div>
+              <button className="action-cta">Act →</button>
+            </div>
+          ))}
         </div>
 
         <div className="card">
-          <div className="card-header">
-            <span className="card-title">Report standards supported</span>
-          </div>
-          <div className="standards-list">
+          <div className="card-hd"><h3>Report standards supported</h3></div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {STANDARDS.map(s => (
-              <div key={s.name} className="standard-row">
-                <div className="standard-name">{s.name}</div>
-                <span className={`badge ${s.badge}`}>{s.status}</span>
-                <div className="standard-desc">{s.desc}</div>
+              <div key={s.title} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: 10, background: 'var(--surface)', borderRadius: 8 }}>
+                <div style={{ width: 28, height: 28, background: s.bg, borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12 }}>{s.icon}</div>
+                <div>
+                  <div style={{ fontSize: 12, fontWeight: 500 }}>{s.title}</div>
+                  <div style={{ fontSize: 11, color: 'var(--ink4)' }}>{s.desc}</div>
+                </div>
+                <span className={`badge ${s.badge}`} style={{ marginLeft: 'auto' }}>{s.label}</span>
               </div>
             ))}
           </div>
