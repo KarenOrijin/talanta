@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PEFA Cathedral Webuye — Leads download</title>
+  <style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    background: #f7faf8;
+    color: #0e1b14;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .card {
+    max-width: 480px;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #d8e5df;
+    border-radius: 12px;
+    padding: 28px 24px;
+  }
+  h1 { font-size: 1.25rem; margin: 0 0 8px; }
+  .sub { font-size: 0.9rem; color: #4a5c54; margin-bottom: 24px; line-height: 1.45; }
+  .stat { font-size: 0.85rem; background: #e1f5ee; color: #0d5c44; padding: 8px 12px; border-radius: 8px; margin-bottom: 20px; }
+  a.lead-dl {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 16px;
+    margin: 10px 0;
+    background: #1d9e75;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+  }
+  a.lead-dl:hover { background: #157a5c; }
+  a.lead-dl.alt { background: #378add; }
+  a.lead-dl.alt:hover { background: #2a6cb0; }
+  a.lead-dl.pack { background: #0e1b14; }
+  a.lead-dl.pack:hover { background: #1a2e24; }
+  .arrow { opacity: 0.9; font-size: 1.1rem; }
+  .tip { font-size: 0.8rem; color: #6b7d75; margin-top: 20px; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Coach project — outreach leads</h1>
+    <p class="sub">PEFA Cathedral Webuye. Tap a file to download to your device.</p>
+    <p class="stat"><strong>313</strong> contacts · one combined list</p>
+
+    <a class="lead-dl" href="./PEFA_Coach_Leads_All_Contacts.xlsx" download="PEFA_Coach_Leads_All_Contacts.xlsx">
+      <span>Excel — all contacts (recommended)</span>
+      <span class="arrow">↓</span>
+    </a>
+    <a class="lead-dl alt" href="./ALL_CONTACTS_ONE_LIST.csv" download="ALL_CONTACTS_ONE_LIST.csv">
+      <span>CSV — all contacts</span>
+      <span class="arrow">↓</span>
+    </a>
+    <a class="lead-dl alt" href="./Cathedral_Coach_Payment_Tracker_Dashboard.xlsx" download="Cathedral_Coach_Payment_Tracker_Dashboard.xlsx">
+      <span>Payment tracker dashboard</span>
+      <span class="arrow">↓</span>
+    </a>
+
+    <p class="tip">In Excel, filter <strong>funding_fit</strong> or <strong>priority</strong> for Critical / High first.</p>
+  </div>
+</body>
+</html>
