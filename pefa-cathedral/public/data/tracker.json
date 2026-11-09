@@ -1,0 +1,208 @@
+{
+  "summary": {
+    "targetKsh": 4336550,
+    "raisedKsh": 1243820,
+    "balanceKsh": 3092730,
+    "percentRaised": 28.7,
+    "membersPaying": 131,
+    "groupsActive": 129,
+    "fullyPaid": 29,
+    "overpaid": 14,
+    "updatedAt": "2026-11-09T19:33:14.650929+00:00",
+    "church": "PEFA Cathedral Webuye",
+    "project": "Cathedral Coach",
+    "currency": "KES",
+    "tagline": "Accountable giving. Visible progress. Kingdom impact."
+  },
+  "groups": [
+    {
+      "name": "SARAH",
+      "targetKsh": 36550,
+      "raisedKsh": 33890,
+      "balanceKsh": 2660,
+      "percentDone": 92.7
+    },
+    {
+      "name": "ZEBLON",
+      "targetKsh": 360000,
+      "raisedKsh": 209000,
+      "balanceKsh": 111000,
+      "percentDone": 58.1
+    },
+    {
+      "name": "DORCUS",
+      "targetKsh": 900000,
+      "raisedKsh": 344000,
+      "balanceKsh": 556000,
+      "percentDone": 38.2
+    },
+    {
+      "name": "LEVI",
+      "targetKsh": 1200000,
+      "raisedKsh": 385000,
+      "balanceKsh": 815000,
+      "percentDone": 32.1
+    },
+    {
+      "name": "PHEOBE",
+      "targetKsh": 310000,
+      "raisedKsh": 98650,
+      "balanceKsh": 211350,
+      "percentDone": 31.8
+    },
+    {
+      "name": "DAN",
+      "targetKsh": 120000,
+      "raisedKsh": 31000,
+      "balanceKsh": 89000,
+      "percentDone": 25.8
+    },
+    {
+      "name": "ISSACHAR",
+      "targetKsh": 380000,
+      "raisedKsh": 76200,
+      "balanceKsh": 223800,
+      "percentDone": 20.1
+    },
+    {
+      "name": "REUBEN",
+      "targetKsh": 500000,
+      "raisedKsh": 40490,
+      "balanceKsh": 459510,
+      "percentDone": 8.1
+    },
+    {
+      "name": "SIMEON",
+      "targetKsh": 200000,
+      "raisedKsh": 0,
+      "balanceKsh": 200000,
+      "percentDone": 0.0
+    },
+    {
+      "name": "DEBORAH",
+      "targetKsh": 90000,
+      "raisedKsh": 0,
+      "balanceKsh": 90000,
+      "percentDone": 0.0
+    },
+    {
+      "name": "JOSEPH",
+      "targetKsh": 80000,
+      "raisedKsh": 0,
+      "balanceKsh": 80000,
+      "percentDone": 0.0
+    },
+    {
+      "name": "BENJAMIN",
+      "targetKsh": 70000,
+      "raisedKsh": 0,
+      "balanceKsh": 70000,
+      "percentDone": 0.0
+    },
+    {
+      "name": "ASHER",
+      "targetKsh": 60000,
+      "raisedKsh": 0,
+      "balanceKsh": 60000,
+      "percentDone": 0.0
+    },
+    {
+      "name": "GAD",
+      "targetKsh": 30000,
+      "raisedKsh": 0,
+      "balanceKsh": 30000,
+      "percentDone": 0.0
+    }
+  ],
+  "weeklyCollections": [
+    {
+      "week": "31 May",
+      "amountKsh": 92200
+    },
+    {
+      "week": "7 Jun",
+      "amountKsh": 84550
+    },
+    {
+      "week": "14 Jun",
+      "amountKsh": 76200
+    },
+    {
+      "week": "21 Jun",
+      "amountKsh": 57800
+    },
+    {
+      "week": "28 Jun",
+      "amountKsh": 105000
+    },
+    {
+      "week": "5 Jul",
+      "amountKsh": 94000
+    },
+    {
+      "week": "19 Jul",
+      "amountKsh": 56300
+    },
+    {
+      "week": "26 Jul",
+      "amountKsh": 94800
+    },
+    {
+      "week": "2 Aug",
+      "amountKsh": 120500
+    },
+    {
+      "week": "9 Aug",
+      "amountKsh": 78050
+    },
+    {
+      "week": "16 Aug",
+      "amountKsh": 35940
+    },
+    {
+      "week": "23 Aug",
+      "amountKsh": 39000
+    },
+    {
+      "week": "6 Sep",
+      "amountKsh": 18000
+    },
+    {
+      "week": "13 Sep",
+      "amountKsh": 29500
+    },
+    {
+      "week": "20 Sep",
+      "amountKsh": 2000
+    },
+    {
+      "week": "27 Sep",
+      "amountKsh": 7000
+    },
+    {
+      "week": "4 Oct",
+      "amountKsh": 16000
+    },
+    {
+      "week": "11 Oct",
+      "amountKsh": 14000
+    },
+    {
+      "week": "25 Oct",
+      "amountKsh": 44300
+    },
+    {
+      "week": "1 Nov",
+      "amountKsh": 56500
+    }
+  ],
+  "giving": {
+    "mpesaPaybill": "\u2014",
+    "accountName": "PEFA Cathedral Webuye \u2014 Coach Project",
+    "note": "Contact church office for Paybill number and account details.",
+    "contacts": {
+      "pefaHq": "info@pefachurch.org",
+      "phone": "+254 712 893 511"
+    }
+  }
+}
