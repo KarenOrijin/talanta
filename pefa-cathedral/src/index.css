@@ -67,11 +67,31 @@ a {
   color: var(--forest);
 }
 
+.brand-sub {
+  margin: 0.15rem 0 0;
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
 .nav {
   display: flex;
-  gap: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.85rem 1.1rem;
   align-items: center;
-  font-size: 0.92rem;
+  justify-content: flex-end;
+  font-size: 0.88rem;
+}
+
+@media (max-width: 900px) {
+  .top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .nav {
+    width: 100%;
+  }
 }
 
 .nav a {
@@ -661,4 +681,185 @@ a {
 
 .footer p {
   margin: 0.35rem 0;
+}
+
+.footer-nav {
+  margin-top: 1rem !important;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.footer-nav a {
+  font-size: 0.85rem;
+}
+
+.page-section {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
+.page-header {
+  max-width: 720px;
+  margin: 0 auto 2rem;
+  text-align: center;
+}
+
+.page-header h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  margin: 0.35rem 0 0.75rem;
+}
+
+.page-lead {
+  font-size: 1.05rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.hero-coach-points {
+  max-width: 640px;
+  margin: 1.5rem auto 0;
+  text-align: left;
+}
+
+.hero-coach-points ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--text);
+}
+
+.story-page-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (max-width: 850px) {
+  .story-page-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.prose p {
+  margin-top: 0;
+}
+
+.text-link {
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  max-width: 1100px;
+  margin: 0 auto 2rem;
+}
+
+@media (max-width: 800px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.about-card {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.check-list {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.check-list li {
+  margin-bottom: 0.35rem;
+}
+
+.subhead.center {
+  text-align: center;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+  max-width: 1100px;
+  margin: 1.5rem auto 0;
+}
+
+.contact-grid.compact .contact-card {
+  padding: 1rem 1.15rem;
+}
+
+.contact-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.35rem;
+  box-shadow: var(--shadow);
+  border-top: 3px solid var(--gold);
+}
+
+.contact-card h3 {
+  margin: 0.25rem 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.contact-role {
+  margin: 0;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.contact-highlight {
+  max-width: 1100px;
+  margin: 1.5rem auto;
+  background: var(--forest);
+  color: var(--cream);
+  padding: 1.5rem 1.75rem;
+  border-radius: var(--radius);
+}
+
+.contact-highlight h3 {
+  color: var(--white);
+  margin: 0.35rem 0;
+}
+
+.contact-highlight a {
+  color: var(--gold-light);
+}
+
+.contact-highlight .give-label {
+  color: var(--gold-light);
+}
+
+.contact-highlight .muted {
+  color: rgba(250, 247, 242, 0.85);
+}
+
+.visit-banner {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 1.25rem;
+  background: var(--white);
+  border-radius: var(--radius);
+}
+
+.tracker-ring {
+  justify-content: center;
+  margin-bottom: 1rem;
 }

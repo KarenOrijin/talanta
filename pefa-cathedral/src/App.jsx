@@ -1,8 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import seedTracker from './data/tracker.json';
-import { GIVING } from './config/giving';
-
-const img = (file) => `${(import.meta.env.BASE_URL || '/').replace(/\/?$/, '/')}images/${file}`;
+import { CHURCH, GIVING, LEADERS } from './config/giving';
 
 function formatKsh(n) {
   return new Intl.NumberFormat('en-KE', { style: 'currency', currency: 'KES', maximumFractionDigits: 0 }).format(n || 0);
@@ -15,6 +13,16 @@ function formatDate(iso) {
   } catch {
     return iso;
   }
+}
+
+function PageHeader({ id, kicker, title, lead }) {
+  return (
+    <header id={id} className="page-header">
+      {kicker && <p className="eyebrow">{kicker}</p>}
+      <h2>{title}</h2>
+      {lead && <p className="page-lead">{lead}</p>}
+    </header>
+  );
 }
 
 function ProgressRing({ percent }) {
@@ -54,6 +62,26 @@ function CopyRow({ label, value }) {
   );
 }
 
+function ContactCard({ person }) {
+  return (
+    <article className="contact-card">
+      <p className="contact-role">{person.role}</p>
+      <h3>{person.name}</h3>
+      <p className="muted">{person.note}</p>
+      {person.phone && (
+        <p>
+          <a href={`tel:${person.tel || person.phone.replace(/\s/g, '')}`}>{person.phone}</a>
+        </p>
+      )}
+      {person.email && (
+        <p>
+          <a href={`mailto:${person.email}`}>{person.email}</a>
+        </p>
+      )}
+    </article>
+  );
+}
+
 function GiveSecurelyButton() {
   const [status, setStatus] = useState('');
   const give = async () => {
@@ -85,7 +113,6 @@ const basePath = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
 
 export default function App() {
   const [data, setData] = useState(seedTracker);
-  const [error, setError] = useState('');
   const [filter, setFilter] = useState('all');
 
   const load = useCallback(async () => {
@@ -93,7 +120,6 @@ export default function App() {
       const res = await fetch(`${basePath}data/tracker.json?t=${Date.now()}`);
       if (!res.ok) return;
       setData(await res.json());
-      setError('');
     } catch {
       /* keep bundled seed data */
     }
@@ -116,89 +142,157 @@ export default function App() {
   }, [groups, filter]);
 
   const maxWeek = Math.max(...weeks.map((w) => w.amountKsh), 1);
+  const coachCost = summary?.coachCostKsh ?? GIVING.coachCostKsh;
+  const raised = summary?.raisedKsh ?? 0;
 
   return (
     <div className="site">
       <header className="top">
-        <div className="brand">PEFA Cathedral</div>
-        <nav className="nav">
-          <a href="#story">Story</a>
-          <a href="#tracker">Live tracker</a>
-          <a href="#give" className="nav-cta">Give now</a>
+        <div>
+          <div className="brand">{CHURCH.name}</div>
+          <p className="brand-sub">{CHURCH.location}</p>
+        </div>
+        <nav className="nav" aria-label="Main">
+          <a href="#home">Home</a>
+          <a href="#our-story">Our story</a>
+          <a href="#about">About</a>
+          <a href="#tracker">Tracker</a>
+          <a href="#contact">Contact</a>
+          <a href="#give" className="nav-cta">Give</a>
         </nav>
       </header>
 
-      <section className="hero">
+      <section id="home" className="hero">
         <div className="hero-inner">
-          <p className="eyebrow">PEFA Cathedral · Webuye, Bungoma</p>
-          <h1>From a mud house to a coach for Webuye</h1>
+          <p className="eyebrow">Cathedral Coach Project · {CHURCH.denomination}</p>
+          <h1>A ministry coach for Webuye and beyond</h1>
           <p className="hero-lead">
-            Ten years ago we started in a small mud house. Today 182 members in 14 groups have pledged KSh 4.3 million
-            toward a KSh 8,000,000 coach. {summary?.membersPaying ?? 133} have already given. Partners are invited to
-            help finish what our congregation started. Every gift is tracked on this page.
+            We are purchasing a coach to carry our congregation, choir, youth, and mission teams to services,
+            outreach, and community events across Bungoma County. The vehicle costs {formatKsh(coachCost)}. Our members
+            have already given {formatKsh(raised)} with every shilling recorded on our live tracker. We invite partners
+            to help us complete what our church has begun.
           </p>
+          <div className="hero-coach-points">
+            <ul>
+              <li>Safe transport for elders, children, and rural members</li>
+              <li>Outreach beyond the cathedral walls</li>
+              <li>Official receipts, committee oversight, honour roll for partners</li>
+            </ul>
+          </div>
           <div className="hero-actions">
-            <a className="btn btn-gold" href="#give">Contribute today</a>
-            <a className="btn btn-ghost" href="#tracker">View live progress</a>
+            <a className="btn btn-gold" href="#give">Support the coach</a>
+            <a className="btn btn-ghost" href="#tracker">See live progress</a>
           </div>
           {summary && (
             <div className="hero-stats">
-              <div><span className="stat-val">{formatKsh(summary.raisedKsh)}</span><span className="stat-lbl">raised</span></div>
-              <div><span className="stat-val">{formatKsh(summary.balanceKsh)}</span><span className="stat-lbl">to go</span></div>
-              <div><span className="stat-val">{summary.groupsActive}</span><span className="stat-lbl">active groups</span></div>
+              <div><span className="stat-val">{formatKsh(coachCost)}</span><span className="stat-lbl">coach goal</span></div>
+              <div><span className="stat-val">{formatKsh(summary.raisedKsh)}</span><span className="stat-lbl">raised so far</span></div>
+              <div><span className="stat-val">{summary.membersPaying}</span><span className="stat-lbl">members giving</span></div>
             </div>
           )}
         </div>
       </section>
 
-      <section id="story" className="section story">
-        <div className="story-grid">
-          <div>
-            <img className="section-img" src={img('story.svg')} alt="Community ministry in Western Kenya" />
-            <h2>Our story</h2>
+      <section id="our-story" className="section page-section story-page">
+        <PageHeader
+          kicker="Our story"
+          title="From a mud house to a cathedral of faith"
+          lead="This is how God built our congregation before we asked anyone outside our walls to help with the coach."
+        />
+        <div className="story-page-grid">
+          <div className="prose">
             <p>
-              PEFA Cathedral Webuye had no sponsor when we began, only a congregation that believed God had a bigger
-              plan. Sunday by Sunday, gift by gift, we built the church we worship in today. Now we want to take the
-              church to the people: a coach for congregation, choir, youth, and mission teams across Webuye.
+              Ten years ago, PEFA Cathedral Webuye began in a small mud house. We had no sponsor and no outside funding,
+              only a congregation that believed God had a bigger plan for us. Every Sunday, members gave what they could.
+              Sunday by Sunday, gift by gift, that faithfulness built the church we worship in today.
             </p>
+            <p>
+              We learned to give, to wait, and to trust. We learned accountability because every gift mattered. That same
+              spirit now drives the coach project: members organised first, gave first, and opened the books for the
+              committee to see.
+            </p>
+            <p>
+              Having built a house of worship, we are ready for the next step. We want to take the church to the people.
+              The coach is not a luxury. It is how we serve Webuye beyond our four walls.
+            </p>
+            <h3 className="subhead">What members have done for the coach</h3>
             <ul className="pillars">
-              <li><strong>Members first:</strong> since May 2026, {summary?.membersOrganized ?? 182} members in {summary?.groupsActive ?? 14} groups pledged KSh 4.3M</li>
-              <li><strong>Digital tracker:</strong> every shilling recorded each Sunday, open to the committee</li>
-              <li><strong>Receipts and reports:</strong> church receipts, progress updates, and a final report when the coach is bought</li>
-              <li><strong>Honour roll:</strong> partners named at the dedication when the coach is handed over</li>
+              <li>Since May 2026, {summary?.membersOrganized ?? 182} members in {summary?.groupsActive ?? 14} groups pledged KSh 4.3 million</li>
+              <li>{summary?.membersPaying ?? 133} members have given {formatKsh(summary?.raisedKsh ?? 1_309_820)} Sunday after Sunday</li>
+              <li>Digital payment tracker updated weekly for full transparency</li>
             </ul>
-            <h3 className="subhead">Project committee</h3>
-            <ul className="committee-list">
-              {GIVING.committee.map((name) => (
-                <li key={name}>{name}</li>
-              ))}
-            </ul>
+            <a className="text-link" href="#about">About our church →</a>
           </div>
-          <div className="story-card">
+          <aside className="story-card">
             <p className="quote">
               Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion,
               for God loves a cheerful giver.
             </p>
             <p className="quote-by">2 Corinthians 9:7</p>
-            <p className="quote-note">Karen Wanyama · On behalf of Bishop Frank Erima and the Coach Project Committee</p>
-          </div>
+          </aside>
         </div>
       </section>
 
-      <section id="tracker" className="section tracker">
-        <div className="section-head">
-          <div>
-            <h2>Live fundraising dashboard</h2>
-            <p className="muted">Refreshes every 45 seconds · Last update: {formatDate(summary?.updatedAt)}</p>
+      <section id="about" className="section page-section about-page">
+        <PageHeader
+          kicker="About us"
+          title="PEFA Cathedral Webuye"
+          lead="A worshipping community in Western Kenya, committed to the Gospel, accountable stewardship, and service to our neighbours."
+        />
+        <div className="about-grid">
+          <div className="about-card">
+            <h3>Who we are</h3>
+            <p>
+              {CHURCH.name} is part of {CHURCH.denomination}. We gather for worship, discipleship, and community outreach
+              in {CHURCH.location}. We are led by {LEADERS[0].name} and serve families across Webuye and Bungoma County.
+            </p>
           </div>
+          <div className="about-card">
+            <h3>Our mission</h3>
+            <p>
+              To proclaim Christ, nurture believers, and serve our community with integrity. We believe local churches
+              should be transparent with the resources God provides through his people.
+            </p>
+          </div>
+          <div className="about-card">
+            <h3>Coach project</h3>
+            <p>
+              The cathedral coach project is the congregation&apos;s initiative to secure reliable ministry transport.
+              Funds are receipted through church finance, overseen by a named committee, and reported on this official
+              project site.
+            </p>
+          </div>
+          <div className="about-card">
+            <h3>Accountability</h3>
+            <ul className="check-list">
+              <li>Official church receipt for every gift</li>
+              <li>Live fundraising dashboard on this site</li>
+              <li>Progress reports for partners; final report at purchase</li>
+              <li>Partner names on the honour roll at dedication</li>
+            </ul>
+          </div>
+        </div>
+        <h3 className="subhead center">Coach Project Committee</h3>
+        <div className="contact-grid compact">
+          {LEADERS.map((p) => (
+            <ContactCard key={p.name} person={p} />
+          ))}
+        </div>
+      </section>
+
+      <section id="tracker" className="section tracker page-section">
+        <PageHeader
+          kicker="Transparency"
+          title="Live fundraising dashboard"
+          lead={`Refreshes every 45 seconds. Last update: ${formatDate(summary?.updatedAt)}`}
+        />
+        <div className="section-head tracker-ring">
           <ProgressRing percent={summary?.percentRaised ?? 0} />
         </div>
 
-        {error && <p className="banner-warn">{error}</p>}
-
         <div className="kpi-grid">
           {[
-            ['Coach cost', formatKsh(summary?.coachCostKsh ?? GIVING.coachCostKsh)],
+            ['Coach cost', formatKsh(coachCost)],
             ['Member pledge target', formatKsh(summary?.targetKsh)],
             ['Raised (members)', formatKsh(summary?.raisedKsh)],
             ['Balance on pledge', formatKsh(summary?.balanceKsh)],
@@ -256,33 +350,21 @@ export default function App() {
         </div>
       </section>
 
-      <section id="give" className="section give">
+      <section id="give" className="section give page-section">
+        <PageHeader kicker="Give" title="Partner with us" lead="Use M-Pesa Pay Bill below. Every gift is receipted through church finance." />
         <GiveSecurelyButton />
         <div className="give-grid">
           <div>
-            <h2>Give now</h2>
-            <p>
-              New friends can give in minutes. Use the Paybill and account below exactly as shown.
-              Every gift is receipted through church finance.
-            </p>
             <div id="payment-details" className="give-box payment-box">
               <p className="give-label">M-Pesa Pay Bill</p>
               <CopyRow label="Paybill number" value={GIVING.mpesaPaybill} />
               <CopyRow label="Account number" value={GIVING.mpesaAccount} />
               <p className="give-hint">{GIVING.accountLabel}</p>
             </div>
-            <div className="give-box contacts-box">
-              <p className="give-label">Visit or call</p>
-              <p>
-                <a href={`tel:${GIVING.bishop.tel}`}>{GIVING.bishop.name}: {GIVING.bishop.phone}</a>
-              </p>
-              <p>
-                <a href={`tel:${GIVING.chairman.tel}`}>{GIVING.chairman.name}: {GIVING.chairman.phone}</a>
-              </p>
-              <p>
-                <a href={`mailto:${GIVING.emailInfo}`}>{GIVING.emailInfo}</a>
-              </p>
-            </div>
+            <p className="muted">
+              Questions? <a href="#contact">Contact the project secretary</a> or email{' '}
+              <a href={`mailto:${CHURCH.emailAccounts}`}>{CHURCH.emailAccounts}</a>.
+            </p>
           </div>
           <div className="give-card">
             <h3>M-Pesa steps</h3>
@@ -293,20 +375,56 @@ export default function App() {
             </ol>
             <a
               className="btn btn-gold full"
-              href={`mailto:${GIVING.emailAccounts}?subject=Coach%20Project%20Gift%20PEFA%20Cathedral%20Webuye`}
+              href={`mailto:${CHURCH.emailAccounts}?subject=Coach%20Project%20Gift%20PEFA%20Cathedral%20Webuye`}
             >
-              Email accounts office with receipt
+              Email receipt to accounts office
             </a>
-            <p className="fine-print">
-              Partner gifts receive official church receipts and honour roll recognition at dedication.
-            </p>
           </div>
         </div>
       </section>
 
+      <section id="contact" className="section page-section contact-page">
+        <PageHeader
+          kicker="Contact us"
+          title="Visit, call, or write"
+          lead="We welcome donors, partners, and guests. Contact the committee to arrange a visit or request a progress report."
+        />
+        <div className="visit-banner">
+          <p><strong>{CHURCH.name}</strong></p>
+          <p>{CHURCH.location}</p>
+          <p>
+            National HQ: <a href={`mailto:${CHURCH.emailInfo}`}>{CHURCH.emailInfo}</a>
+          </p>
+        </div>
+        <div className="contact-highlight">
+          <p className="give-label">Project Secretary</p>
+          <h3>Mrs Gladys N. Wanyama</h3>
+          <p>
+            <a href="tel:+254711751437">0711 751 437</a>
+            {' · '}
+            <a href="mailto:gladyswahiki93@gmail.com">gladyswahiki93@gmail.com</a>
+          </p>
+          <p className="muted">Best contact for donors, visit requests, and contribution reports.</p>
+        </div>
+        <div className="contact-grid">
+          {LEADERS.map((p) => (
+            <ContactCard key={p.name} person={p} />
+          ))}
+        </div>
+      </section>
+
       <footer className="footer">
-        <p>© {new Date().getFullYear()} PEFA Cathedral Webuye · Bungoma County, Kenya</p>
-        <p className="muted">Figures from the official Payment Tracker dashboard.</p>
+        <div className="footer-inner">
+          <p>© {new Date().getFullYear()} {CHURCH.name}</p>
+          <p className="muted">{CHURCH.location} · Figures from the official Payment Tracker</p>
+          <p className="footer-nav">
+            <a href="#home">Home</a>
+            <a href="#our-story">Our story</a>
+            <a href="#about">About</a>
+            <a href="#give">Give</a>
+            <a href="#contact">Contact</a>
+          </p>
+        </div>
       </footer>
     </div>
   );
