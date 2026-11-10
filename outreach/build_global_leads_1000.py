@@ -55,15 +55,13 @@ def row(
     }
 
 
-def load_csv(path: Path, skip_extra: bool = True) -> list[dict]:
+def load_csv(path: Path) -> list[dict]:
     if not path.exists():
         return []
     out = []
     with path.open(newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for r in reader:
-            if skip_extra and "id" in r:
-                continue
             mapped = row(
                 r.get("name", ""),
                 r.get("organization", ""),
