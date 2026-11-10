@@ -102,7 +102,6 @@ export default function App() {
       </header>
 
       <section className="hero">
-        <img className="hero-img" src={img('hero.svg')} alt="PEFA Cathedral Webuye worship and community" />
         <div className="hero-inner">
           <p className="eyebrow">PEFA Cathedral · Webuye, Bungoma</p>
           <h1>From a mud house to a coach for Webuye</h1>
