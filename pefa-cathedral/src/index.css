@@ -115,12 +115,24 @@ a {
   display: block;
 }
 
-.give-banner {
-  width: 100%;
+.give-secure-wrap {
   max-width: 1100px;
   margin: 0 auto 2rem;
-  display: block;
-  border-radius: var(--radius);
+  text-align: center;
+}
+
+.give-secure-btn {
+  font-size: 1.05rem;
+  padding: 0.85rem 2.25rem;
+  cursor: pointer;
+  border: none;
+}
+
+.give-secure-status {
+  margin: 0.75rem 0 0;
+  font-size: 0.9rem;
+  color: var(--forest);
+  font-weight: 600;
 }
 
 .payment-box {

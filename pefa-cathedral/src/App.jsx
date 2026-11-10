@@ -54,6 +54,33 @@ function CopyRow({ label, value }) {
   );
 }
 
+function GiveSecurelyButton() {
+  const [status, setStatus] = useState('');
+  const give = async () => {
+    const text = [
+      `M-Pesa Paybill: ${GIVING.mpesaPaybill}`,
+      `Account number: ${GIVING.mpesaAccount}`,
+      GIVING.accountLabel,
+    ].join('\n');
+    try {
+      await navigator.clipboard.writeText(text);
+      setStatus('Payment details copied. Open M-Pesa and use Pay Bill.');
+    } catch {
+      setStatus('Use Paybill and account numbers shown below.');
+    }
+    document.getElementById('payment-details')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => setStatus(''), 5000);
+  };
+  return (
+    <div className="give-secure-wrap">
+      <button type="button" className="btn btn-gold give-secure-btn" onClick={give}>
+        Give securely
+      </button>
+      {status && <p className="give-secure-status" role="status">{status}</p>}
+    </div>
+  );
+}
+
 const basePath = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
 
 export default function App() {
@@ -230,7 +257,7 @@ export default function App() {
       </section>
 
       <section id="give" className="section give">
-        <img className="give-banner" src={img('give.svg')} alt="Give toward the cathedral coach" />
+        <GiveSecurelyButton />
         <div className="give-grid">
           <div>
             <h2>Give now</h2>
@@ -238,7 +265,7 @@ export default function App() {
               New friends can give in minutes. Use the Paybill and account below exactly as shown.
               Every gift is receipted through church finance.
             </p>
-            <div className="give-box payment-box">
+            <div id="payment-details" className="give-box payment-box">
               <p className="give-label">M-Pesa Pay Bill</p>
               <CopyRow label="Paybill number" value={GIVING.mpesaPaybill} />
               <CopyRow label="Account number" value={GIVING.mpesaAccount} />
