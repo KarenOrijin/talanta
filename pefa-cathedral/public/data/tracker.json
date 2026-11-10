@@ -1,11 +1,13 @@
 {
   "summary": {
-    "targetKsh": 4336550,
-    "raisedKsh": 1243820,
-    "balanceKsh": 3092730,
-    "percentRaised": 28.7,
-    "membersPaying": 131,
-    "groupsActive": 129,
+    "coachCostKsh": 8000000,
+    "targetKsh": 4300000,
+    "raisedKsh": 1309820,
+    "balanceKsh": 2990180,
+    "percentRaised": 30.5,
+    "membersPaying": 133,
+    "membersOrganized": 182,
+    "groupsActive": 14,
     "fullyPaid": 29,
     "overpaid": 14,
     "updatedAt": "2026-11-09T19:33:14.650929+00:00",
@@ -197,13 +199,14 @@
     }
   ],
   "giving": {
-    "mpesaPaybill": "247247",
-    "mpesaAccount": "PEFA WEBUYE COACH",
+    "mpesaPaybill": "522533",
+    "mpesaAccount": "8093973",
     "accountName": "PEFA Cathedral Webuye Coach Project",
-    "note": "Use Pay Bill steps on Give now. Forward M-Pesa SMS to accounts@pefachurch.org",
+    "note": "Pay Bill 522533, Account 8093973. Forward M-Pesa SMS to accounts@pefachurch.org",
     "contacts": {
       "pefaHq": "info@pefachurch.org",
-      "phone": "+254 712 893 511"
+      "bishop": "0702196536",
+      "chairman": "0717795197"
     }
   }
 }

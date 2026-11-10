@@ -105,10 +105,11 @@ export default function App() {
         <img className="hero-img" src={img('hero.svg')} alt="PEFA Cathedral Webuye worship and community" />
         <div className="hero-inner">
           <p className="eyebrow">PEFA Cathedral · Webuye, Bungoma</p>
-          <h1>Building our cathedral coach together</h1>
+          <h1>From a mud house to a coach for Webuye</h1>
           <p className="hero-lead">
-            Our members have led the way. Now we invite friends and partners to help us complete the coach
-            for ministry, outreach, and faithful care. Every shilling is recorded and shown on this page.
+            Ten years ago we started in a small mud house. Today 182 members in 14 groups have pledged KSh 4.3 million
+            toward a KSh 8,000,000 coach. {summary?.membersPaying ?? 133} have already given. Partners are invited to
+            help finish what our congregation started. Every gift is tracked on this page.
           </p>
           <div className="hero-actions">
             <a className="btn btn-gold" href="#give">Contribute today</a>
@@ -128,21 +129,32 @@ export default function App() {
         <div className="story-grid">
           <div>
             <img className="section-img" src={img('story.svg')} alt="Community ministry in Western Kenya" />
-            <h2>A high standard ministry for Western Kenya</h2>
+            <h2>Our story</h2>
             <p>
-              We follow the best of cathedral communication: clear giving paths, honest storytelling,
-              and open books. PEFA Cathedral Webuye welcomes partners near and far to join a completed
-              member campaign that still receives your seed.
+              PEFA Cathedral Webuye had no sponsor when we began, only a congregation that believed God had a bigger
+              plan. Sunday by Sunday, gift by gift, we built the church we worship in today. Now we want to take the
+              church to the people: a coach for congregation, choir, youth, and mission teams across Webuye.
             </p>
             <ul className="pillars">
-              <li><strong>Accountability:</strong> group totals from our official ledger</li>
-              <li><strong>Community:</strong> {summary?.membersPaying ?? 131} members in {summary?.groupsActive ?? 129} groups</li>
-              <li><strong>Impact:</strong> reliable transport for elders, youth, and rural outreach</li>
+              <li><strong>Members first:</strong> since May 2026, {summary?.membersOrganized ?? 182} members in {summary?.groupsActive ?? 14} groups pledged KSh 4.3M</li>
+              <li><strong>Digital tracker:</strong> every shilling recorded each Sunday, open to the committee</li>
+              <li><strong>Receipts and reports:</strong> church receipts, progress updates, and a final report when the coach is bought</li>
+              <li><strong>Honour roll:</strong> partners named at the dedication when the coach is handed over</li>
+            </ul>
+            <h3 className="subhead">Project committee</h3>
+            <ul className="committee-list">
+              {GIVING.committee.map((name) => (
+                <li key={name}>{name}</li>
+              ))}
             </ul>
           </div>
           <div className="story-card">
-            <p className="quote">Let every gift be seen. Let every need be known. Let Christ be honoured in our openness.</p>
-            <p className="quote-by">PEFA Cathedral Webuye leadership</p>
+            <p className="quote">
+              Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion,
+              for God loves a cheerful giver.
+            </p>
+            <p className="quote-by">2 Corinthians 9:7</p>
+            <p className="quote-note">Karen Wanyama · On behalf of Bishop Frank Erima and the Coach Project Committee</p>
           </div>
         </div>
       </section>
@@ -160,12 +172,12 @@ export default function App() {
 
         <div className="kpi-grid">
           {[
-            ['Target', formatKsh(summary?.targetKsh)],
-            ['Raised', formatKsh(summary?.raisedKsh)],
-            ['Balance', formatKsh(summary?.balanceKsh)],
+            ['Coach cost', formatKsh(summary?.coachCostKsh ?? GIVING.coachCostKsh)],
+            ['Member pledge target', formatKsh(summary?.targetKsh)],
+            ['Raised (members)', formatKsh(summary?.raisedKsh)],
+            ['Balance on pledge', formatKsh(summary?.balanceKsh)],
             ['Members giving', summary?.membersPaying],
-            ['Groups complete', summary?.fullyPaid],
-            ['Overpaid (praise)', summary?.overpaid],
+            ['Contribution groups', summary?.groupsActive],
           ].map(([label, val]) => (
             <div key={label} className="kpi">
               <span className="kpi-label">{label}</span>
@@ -233,16 +245,18 @@ export default function App() {
               <CopyRow label="Account number" value={GIVING.mpesaAccount} />
               <p className="give-hint">{GIVING.accountLabel}</p>
             </div>
-            <div className="give-box">
-              <p className="give-label">Bank transfer</p>
-              <p><strong>{GIVING.bankName}</strong></p>
-              <CopyRow label="Account" value={GIVING.bankAccount} />
+            <div className="give-box contacts-box">
+              <p className="give-label">Visit or call</p>
+              <p>
+                <a href={`tel:${GIVING.bishop.tel}`}>{GIVING.bishop.name}: {GIVING.bishop.phone}</a>
+              </p>
+              <p>
+                <a href={`tel:${GIVING.chairman.tel}`}>{GIVING.chairman.name}: {GIVING.chairman.phone}</a>
+              </p>
+              <p>
+                <a href={`mailto:${GIVING.emailInfo}`}>{GIVING.emailInfo}</a>
+              </p>
             </div>
-            <p className="muted">
-              Phone: <a href={`tel:${GIVING.phone.replace(/\s/g, '')}`}>{GIVING.phone}</a>
-              {' · '}
-              <a href={`mailto:${GIVING.emailInfo}`}>{GIVING.emailInfo}</a>
-            </p>
           </div>
           <div className="give-card">
             <h3>M-Pesa steps</h3>
@@ -258,7 +272,7 @@ export default function App() {
               Email accounts office with receipt
             </a>
             <p className="fine-print">
-              Treasurers: edit Paybill in <code>src/config/giving.js</code> then republish the app.
+              Partner gifts receive official church receipts and honour roll recognition at dedication.
             </p>
           </div>
         </div>
