@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520">
+  <rect width="800" height="520" fill="#2d5a45"/>
+  <rect x="40" y="40" width="720" height="440" rx="12" fill="none" stroke="#c9a227" stroke-width="3"/>
+  <text x="80" y="260" fill="#faf7f2" font-family="Georgia, serif" font-size="36">Ministry across Western Kenya</text>
+  <text x="80" y="310" fill="#d8e5df" font-family="sans-serif" font-size="18">Serving elders, youth and rural communities</text>
+</svg>

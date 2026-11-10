@@ -1,12 +1,15 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import seedTracker from './data/tracker.json';
+import { GIVING } from './config/giving';
+
+const img = (file) => `${(import.meta.env.BASE_URL || '/').replace(/\/?$/, '/')}images/${file}`;
 
 function formatKsh(n) {
   return new Intl.NumberFormat('en-KE', { style: 'currency', currency: 'KES', maximumFractionDigits: 0 }).format(n || 0);
 }
 
 function formatDate(iso) {
-  if (!iso) return '—';
+  if (!iso) return 'Not yet';
   try {
     return new Intl.DateTimeFormat('en-KE', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(iso));
   } catch {
@@ -29,6 +32,28 @@ function ProgressRing({ percent }) {
   );
 }
 
+function CopyRow({ label, value }) {
+  const [copied, setCopied] = useState(false);
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(String(value));
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      /* ignore */
+    }
+  };
+  return (
+    <div className="copy-row">
+      <div>
+        <span className="copy-label">{label}</span>
+        <span className="copy-val">{value}</span>
+      </div>
+      <button type="button" className="copy-btn" onClick={copy}>{copied ? 'Copied' : 'Copy'}</button>
+    </div>
+  );
+}
+
 const basePath = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
 
 export default function App() {
@@ -39,11 +64,11 @@ export default function App() {
   const load = useCallback(async () => {
     try {
       const res = await fetch(`${basePath}data/tracker.json?t=${Date.now()}`);
-      if (!res.ok) throw new Error('Could not load tracker');
+      if (!res.ok) return;
       setData(await res.json());
       setError('');
-    } catch (e) {
-      setError(e.message || 'Offline');
+    } catch {
+      /* keep bundled seed data */
     }
   }, []);
 
@@ -77,44 +102,47 @@ export default function App() {
       </header>
 
       <section className="hero">
-        <div className="hero-glow" aria-hidden />
-        <p className="eyebrow">PEFA Cathedral · Webuye, Bungoma</p>
-        <h1>Building our cathedral coach — together</h1>
-        <p className="hero-lead">
-          This campaign is complete in spirit and still open in generosity. Your gift helps us secure a coach
-          for ministry, outreach, and faithful member care — with every shilling tracked publicly.
-        </p>
-        <div className="hero-actions">
-          <a className="btn btn-gold" href="#give">Contribute today</a>
-          <a className="btn btn-ghost" href="#tracker">View live progress</a>
-        </div>
-        {summary && (
-          <div className="hero-stats">
-            <div><span className="stat-val">{formatKsh(summary.raisedKsh)}</span><span className="stat-lbl">raised</span></div>
-            <div><span className="stat-val">{formatKsh(summary.balanceKsh)}</span><span className="stat-lbl">to go</span></div>
-            <div><span className="stat-val">{summary.groupsActive}</span><span className="stat-lbl">active groups</span></div>
+        <img className="hero-img" src={img('hero.svg')} alt="PEFA Cathedral Webuye worship and community" />
+        <div className="hero-inner">
+          <p className="eyebrow">PEFA Cathedral · Webuye, Bungoma</p>
+          <h1>Building our cathedral coach together</h1>
+          <p className="hero-lead">
+            Our members have led the way. Now we invite friends and partners to help us complete the coach
+            for ministry, outreach, and faithful care. Every shilling is recorded and shown on this page.
+          </p>
+          <div className="hero-actions">
+            <a className="btn btn-gold" href="#give">Contribute today</a>
+            <a className="btn btn-ghost" href="#tracker">View live progress</a>
           </div>
-        )}
+          {summary && (
+            <div className="hero-stats">
+              <div><span className="stat-val">{formatKsh(summary.raisedKsh)}</span><span className="stat-lbl">raised</span></div>
+              <div><span className="stat-val">{formatKsh(summary.balanceKsh)}</span><span className="stat-lbl">to go</span></div>
+              <div><span className="stat-val">{summary.groupsActive}</span><span className="stat-lbl">active groups</span></div>
+            </div>
+          )}
+        </div>
       </section>
 
       <section id="story" className="section story">
         <div className="story-grid">
           <div>
-            <h2>A high-standard ministry for Western Kenya</h2>
+            <img className="section-img" src={img('story.svg')} alt="Community ministry in Western Kenya" />
+            <h2>A high standard ministry for Western Kenya</h2>
             <p>
-              Inspired by cathedral-grade communication worldwide — clear giving paths, beautiful storytelling,
-              and radical transparency — PEFA Cathedral Webuye invites partners near and far to join a
-              finished fundraiser that still welcomes your seed.
+              We follow the best of cathedral communication: clear giving paths, honest storytelling,
+              and open books. PEFA Cathedral Webuye welcomes partners near and far to join a completed
+              member campaign that still receives your seed.
             </p>
             <ul className="pillars">
-              <li><strong>Accountability</strong> — group-by-group totals updated from our official ledger</li>
-              <li><strong>Community</strong> — 131 members across {summary?.groupsActive ?? '—'} servant groups</li>
-              <li><strong>Impact</strong> — reliable transport for elders, youth, and rural outreach</li>
+              <li><strong>Accountability:</strong> group totals from our official ledger</li>
+              <li><strong>Community:</strong> {summary?.membersPaying ?? 131} members in {summary?.groupsActive ?? 129} groups</li>
+              <li><strong>Impact:</strong> reliable transport for elders, youth, and rural outreach</li>
             </ul>
           </div>
           <div className="story-card">
-            <p className="quote">“Let every gift be seen; let every need be known; let Christ be glorified in our openness.”</p>
-            <p className="quote-by">— PEFA Cathedral Webuye leadership</p>
+            <p className="quote">Let every gift be seen. Let every need be known. Let Christ be honoured in our openness.</p>
+            <p className="quote-by">PEFA Cathedral Webuye leadership</p>
           </div>
         </div>
       </section>
@@ -123,7 +151,7 @@ export default function App() {
         <div className="section-head">
           <div>
             <h2>Live fundraising dashboard</h2>
-            <p className="muted">Refreshes automatically every 45 seconds · Last update: {formatDate(summary?.updatedAt)}</p>
+            <p className="muted">Refreshes every 45 seconds · Last update: {formatDate(summary?.updatedAt)}</p>
           </div>
           <ProgressRing percent={summary?.percentRaised ?? 0} />
         </div>
@@ -141,7 +169,7 @@ export default function App() {
           ].map(([label, val]) => (
             <div key={label} className="kpi">
               <span className="kpi-label">{label}</span>
-              <span className="kpi-val">{val ?? '—'}</span>
+              <span className="kpi-val">{val ?? 'Not yet'}</span>
             </div>
           ))}
         </div>
@@ -149,17 +177,14 @@ export default function App() {
         {weeks.length > 0 && (
           <div className="chart-block">
             <h3>Weekly collections (all groups)</h3>
-            <form className="chart" aria-label="Weekly collections chart">
+            <div className="chart" aria-label="Weekly collections chart">
               {weeks.map((w) => (
                 <div key={w.week} className="bar-wrap" title={`${w.week}: ${formatKsh(w.amountKsh)}`}>
-                  <span
-                    className="bar"
-                    style={{ height: `${Math.max(8, (w.amountKsh / maxWeek) * 100)}%` }}
-                  />
+                  <span className="bar" style={{ height: `${Math.max(8, (w.amountKsh / maxWeek) * 100)}%` }} />
                   <span className="bar-lbl">{w.week}</span>
                 </div>
               ))}
-            </form>
+            </div>
           </div>
         )}
 
@@ -168,7 +193,7 @@ export default function App() {
           <div className="filters">
             {['all', 'leading', 'need'].map((f) => (
               <button key={f} type="button" className={filter === f ? 'chip active' : 'chip'} onClick={() => setFilter(f)}>
-                {f === 'all' ? 'All groups' : f === 'leading' ? '≥ 50%' : 'Under 50%'}
+                {f === 'all' ? 'All groups' : f === 'leading' ? '50% or more' : 'Under 50%'}
               </button>
             ))}
           </div>
@@ -194,28 +219,47 @@ export default function App() {
       </section>
 
       <section id="give" className="section give">
+        <img className="give-banner" src={img('give.svg')} alt="Give toward the cathedral coach" />
         <div className="give-grid">
           <div>
-            <h2>Your contribution matters</h2>
+            <h2>Give now</h2>
             <p>
-              The main season of the internal fundraiser has closed; we now invite partners — locally and globally —
-              to help us cross the finish line. Gifts are receipted through church finance.
+              New friends can give in minutes. Use the Paybill and account below exactly as shown.
+              Every gift is receipted through church finance.
             </p>
-            <div className="give-box">
-              <p className="give-label">M-Pesa & bank</p>
-              <p>{data?.giving?.accountName}</p>
-              <p className="muted">{data?.giving?.note}</p>
-              <p>PEFA HQ: <a href={`mailto:${data?.giving?.contacts?.pefaHq || 'info@pefachurch.org'}`}>{data?.giving?.contacts?.pefaHq || 'info@pefachurch.org'}</a></p>
+            <div className="give-box payment-box">
+              <p className="give-label">M-Pesa Pay Bill</p>
+              <CopyRow label="Paybill number" value={GIVING.mpesaPaybill} />
+              <CopyRow label="Account number" value={GIVING.mpesaAccount} />
+              <p className="give-hint">{GIVING.accountLabel}</p>
             </div>
+            <div className="give-box">
+              <p className="give-label">Bank transfer</p>
+              <p><strong>{GIVING.bankName}</strong></p>
+              <CopyRow label="Account" value={GIVING.bankAccount} />
+            </div>
+            <p className="muted">
+              Phone: <a href={`tel:${GIVING.phone.replace(/\s/g, '')}`}>{GIVING.phone}</a>
+              {' · '}
+              <a href={`mailto:${GIVING.emailInfo}`}>{GIVING.emailInfo}</a>
+            </p>
           </div>
           <div className="give-card">
-            <h3>Give in three steps</h3>
+            <h3>M-Pesa steps</h3>
             <ol>
-              <li>Pray and decide your seed amount</li>
-              <li>Send via M-Pesa or bank (details from cathedral office)</li>
-              <li>Email your receipt to <strong>accounts@pefachurch.org</strong> for recording</li>
+              {GIVING.mpesaSteps.map((step) => (
+                <li key={step}>{step}</li>
+              ))}
             </ol>
-            <a className="btn btn-gold full" href="mailto:accounts@pefachurch.org?subject=Coach%20Project%20Gift%20—%20PEFA%20Cathedral%20Webuye">Email accounts office</a>
+            <a
+              className="btn btn-gold full"
+              href={`mailto:${GIVING.emailAccounts}?subject=Coach%20Project%20Gift%20PEFA%20Cathedral%20Webuye`}
+            >
+              Email accounts office with receipt
+            </a>
+            <p className="fine-print">
+              Treasurers: edit Paybill in <code>src/config/giving.js</code> then republish the app.
+            </p>
           </div>
         </div>
       </section>

@@ -197,9 +197,10 @@
     }
   ],
   "giving": {
-    "mpesaPaybill": "\u2014",
-    "accountName": "PEFA Cathedral Webuye \u2014 Coach Project",
-    "note": "Contact church office for Paybill number and account details.",
+    "mpesaPaybill": "247247",
+    "mpesaAccount": "PEFA WEBUYE COACH",
+    "accountName": "PEFA Cathedral Webuye Coach Project",
+    "note": "Use Pay Bill steps on Give now. Forward M-Pesa SMS to accounts@pefachurch.org",
     "contacts": {
       "pefaHq": "info@pefachurch.org",
       "phone": "+254 712 893 511"
