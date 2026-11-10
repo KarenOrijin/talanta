@@ -21,6 +21,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
@@ -98,6 +99,47 @@ a {
   text-decoration: none;
   color: var(--text);
   font-weight: 500;
+}
+
+.nav a.active {
+  color: var(--forest);
+  font-weight: 700;
+}
+
+.brand-btn {
+  border: none;
+  background: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.main-content {
+  min-height: 60vh;
+}
+
+.page-panel {
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.btn-link {
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  color: var(--forest);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.btn-link.inline {
+  display: inline;
 }
 
 .nav-cta {
