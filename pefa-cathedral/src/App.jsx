@@ -478,6 +478,7 @@ export default function App() {
             <NavLink page="about" current={page}>About</NavLink>
             <NavLink page="give" current={page}>Give</NavLink>
             <NavLink page="contact" current={page}>Contact</NavLink>
+            <a href={`${basePath}downloads/index.html`}>Download leads</a>
           </p>
         </div>
       </footer>
