@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import seedTracker from './data/tracker.json';
 
 function formatKsh(n) {
   return new Intl.NumberFormat('en-KE', { style: 'currency', currency: 'KES', maximumFractionDigits: 0 }).format(n || 0);
@@ -28,14 +29,16 @@ function ProgressRing({ percent }) {
   );
 }
 
+const basePath = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
+
 export default function App() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(seedTracker);
   const [error, setError] = useState('');
   const [filter, setFilter] = useState('all');
 
   const load = useCallback(async () => {
     try {
-      const res = await fetch(`/data/tracker.json?t=${Date.now()}`);
+      const res = await fetch(`${basePath}data/tracker.json?t=${Date.now()}`);
       if (!res.ok) throw new Error('Could not load tracker');
       setData(await res.json());
       setError('');

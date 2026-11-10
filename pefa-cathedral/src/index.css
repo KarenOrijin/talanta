@@ -197,6 +197,7 @@ a {
 .story {
   background: var(--forest-deep);
   color: var(--cream-2);
+  min-height: 320px;
 }
 
 .story h2 {

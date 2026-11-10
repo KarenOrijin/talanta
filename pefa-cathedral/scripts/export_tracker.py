@@ -93,10 +93,11 @@ def export_workbook(path: Path) -> dict:
 def main():
     path = Path(sys.argv[1]) if len(sys.argv) > 1 else find_workbook()
     data = export_workbook(path)
-    out = ROOT / "public/data/tracker.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(data, indent=2), encoding="utf-8")
-    print(f"Wrote {out} ({len(data['groups'])} groups)")
+    for rel in ("public/data/tracker.json", "src/data/tracker.json"):
+        out = ROOT / rel
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(data, indent=2), encoding="utf-8")
+    print(f"Wrote tracker.json ({len(data['groups'])} groups)")
 
 
 if __name__ == "__main__":
