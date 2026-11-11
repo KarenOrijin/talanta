@@ -2,8 +2,6 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import seedTracker from './data/tracker.json';
 import { CHURCH, GIVING, LEADERS } from './config/giving';
 
-const PAGES = ['home', 'our-story', 'about', 'tracker', 'give', 'contact'];
-
 function formatKsh(n) {
   return new Intl.NumberFormat('en-KE', { style: 'currency', currency: 'KES', maximumFractionDigits: 0 }).format(n || 0);
 }
@@ -15,13 +13,6 @@ function formatDate(iso) {
   } catch {
     return iso;
   }
-}
-
-function pageFromHash() {
-  const raw = window.location.hash.replace('#', '').toLowerCase();
-  const aliases = { story: 'our-story', '': 'home' };
-  const p = aliases[raw] ?? raw;
-  return PAGES.includes(p) ? p : 'home';
 }
 
 function PageHeader({ kicker, title, lead }) {
@@ -118,46 +109,11 @@ function GiveSecurelyButton() {
   );
 }
 
-function NavLink({ page, current, children, className = '' }) {
-  const go = (e) => {
-    e.preventDefault();
-    window.dispatchEvent(new CustomEvent('pefa-navigate', { detail: page }));
-  };
-  const active = current === page ? ' active' : '';
-  return (
-    <a href={`#${page}`} className={`${className}${active}`} onClick={go}>
-      {children}
-    </a>
-  );
-}
-
 const basePath = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
 
 export default function App() {
-  const [page, setPage] = useState(pageFromHash);
   const [data, setData] = useState(seedTracker);
   const [filter, setFilter] = useState('all');
-
-  const navigate = useCallback((next) => {
-    const p = PAGES.includes(next) ? next : 'home';
-    setPage(p);
-    if (window.location.hash !== `#${p}`) {
-      window.history.pushState(null, '', `#${p}`);
-    }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
-
-  useEffect(() => {
-    const onHash = () => setPage(pageFromHash());
-    const onNav = (e) => navigate(e.detail);
-    window.addEventListener('hashchange', onHash);
-    window.addEventListener('pefa-navigate', onNav);
-    onHash();
-    return () => {
-      window.removeEventListener('hashchange', onHash);
-      window.removeEventListener('pefa-navigate', onNav);
-    };
-  }, [navigate]);
 
   const load = useCallback(async () => {
     try {
@@ -192,23 +148,22 @@ export default function App() {
   return (
     <div className="site">
       <header className="top">
-        <button type="button" className="brand-btn" onClick={() => navigate('home')}>
+        <a href="#home" className="brand-btn">
           <div className="brand">{CHURCH.name}</div>
           <p className="brand-sub">{CHURCH.location}</p>
-        </button>
+        </a>
         <nav className="nav" aria-label="Main">
-          <NavLink page="home" current={page}>Home</NavLink>
-          <NavLink page="our-story" current={page}>Our story</NavLink>
-          <NavLink page="about" current={page}>About</NavLink>
-          <NavLink page="tracker" current={page}>Tracker</NavLink>
-          <NavLink page="contact" current={page}>Contact</NavLink>
-          <NavLink page="give" current={page} className="nav-cta">Give</NavLink>
+          <a href="#home">Home</a>
+          <a href="#our-story">Our story</a>
+          <a href="#about">About</a>
+          <a href="#tracker">Tracker</a>
+          <a href="#contact">Contact</a>
+          <a href="#give" className="nav-cta">Give</a>
         </nav>
       </header>
 
-      <main className="main-content" key={page}>
-        {page === 'home' && (
-          <section className="hero page-panel">
+      <main className="main-content">
+          <section id="home" className="hero">
             <div className="hero-inner">
               <p className="eyebrow">Cathedral Coach Project · {CHURCH.denomination}</p>
               <h1>A ministry coach for Webuye and beyond</h1>
@@ -226,9 +181,10 @@ export default function App() {
                 </ul>
               </div>
               <div className="hero-actions">
-                <button type="button" className="btn btn-gold" onClick={() => navigate('give')}>Support the coach</button>
-                <button type="button" className="btn btn-ghost" onClick={() => navigate('tracker')}>See live progress</button>
+                <a className="btn btn-gold" href="#give">Support the coach</a>
+                <a className="btn btn-ghost" href="#tracker">See live progress</a>
               </div>
+              <p className="scroll-hint">Scroll down for our story, live tracker, and how to give</p>
               {summary && (
                 <div className="hero-stats">
                   <div><span className="stat-val">{formatKsh(coachCost)}</span><span className="stat-lbl">coach goal</span></div>
@@ -238,10 +194,8 @@ export default function App() {
               )}
             </div>
           </section>
-        )}
 
-        {page === 'our-story' && (
-          <section className="section page-section story-page page-panel">
+          <section id="our-story" className="section page-section story-page">
             <PageHeader
               kicker="Our story"
               title="From a mud house to a cathedral of faith"
@@ -269,7 +223,7 @@ export default function App() {
                   <li>{summary?.membersPaying ?? 133} members have given {formatKsh(summary?.raisedKsh ?? 1_309_820)} Sunday after Sunday</li>
                   <li>Digital payment tracker updated weekly for full transparency</li>
                 </ul>
-                <button type="button" className="text-link btn-link" onClick={() => navigate('about')}>About our church</button>
+                <a className="text-link" href="#about">About our church</a>
               </div>
               <aside className="story-card">
                 <p className="quote">
@@ -280,10 +234,8 @@ export default function App() {
               </aside>
             </div>
           </section>
-        )}
 
-        {page === 'about' && (
-          <section className="section page-section about-page page-panel">
+          <section id="about" className="section page-section about-page">
             <PageHeader
               kicker="About us"
               title="PEFA Cathedral Webuye"
@@ -329,10 +281,8 @@ export default function App() {
               ))}
             </div>
           </section>
-        )}
 
-        {page === 'tracker' && (
-          <section className="section tracker page-section page-panel">
+          <section id="tracker" className="section tracker page-section">
             <PageHeader
               kicker="Transparency"
               title="Live fundraising dashboard"
@@ -397,10 +347,8 @@ export default function App() {
               ))}
             </div>
           </section>
-        )}
 
-        {page === 'give' && (
-          <section className="section give page-section page-panel">
+          <section id="give" className="section give page-section">
             <PageHeader kicker="Give" title="Partner with us" lead="Use M-Pesa Pay Bill below. Every gift is receipted through church finance." />
             <GiveSecurelyButton />
             <div className="give-grid">
@@ -412,9 +360,8 @@ export default function App() {
                   <p className="give-hint">{GIVING.accountLabel}</p>
                 </div>
                 <p className="muted">
-                  Questions?{' '}
-                  <button type="button" className="btn-link inline" onClick={() => navigate('contact')}>Contact the project secretary</button>
-                  {' '}or email <a href={`mailto:${CHURCH.emailAccounts}`}>{CHURCH.emailAccounts}</a>.
+                  Questions? <a href="#contact">Contact the project secretary</a> or email{' '}
+                  <a href={`mailto:${CHURCH.emailAccounts}`}>{CHURCH.emailAccounts}</a>.
                 </p>
               </div>
               <div className="give-card">
@@ -433,10 +380,8 @@ export default function App() {
               </div>
             </div>
           </section>
-        )}
 
-        {page === 'contact' && (
-          <section className="section page-section contact-page page-panel">
+          <section id="contact" className="section page-section contact-page">
             <PageHeader
               kicker="Contact us"
               title="Visit, call, or write"
@@ -465,7 +410,6 @@ export default function App() {
               ))}
             </div>
           </section>
-        )}
       </main>
 
       <footer className="footer">
@@ -473,11 +417,12 @@ export default function App() {
           <p>© {new Date().getFullYear()} {CHURCH.name}</p>
           <p className="muted">{CHURCH.location} · Figures from the official Payment Tracker</p>
           <p className="footer-nav">
-            <NavLink page="home" current={page}>Home</NavLink>
-            <NavLink page="our-story" current={page}>Our story</NavLink>
-            <NavLink page="about" current={page}>About</NavLink>
-            <NavLink page="give" current={page}>Give</NavLink>
-            <NavLink page="contact" current={page}>Contact</NavLink>
+            <a href="#home">Home</a>
+            <a href="#our-story">Our story</a>
+            <a href="#about">About</a>
+            <a href="#tracker">Tracker</a>
+            <a href="#give">Give</a>
+            <a href="#contact">Contact</a>
             <a href={`${basePath}downloads/index.html`}>Download leads</a>
           </p>
         </div>

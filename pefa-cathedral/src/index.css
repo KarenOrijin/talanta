@@ -107,11 +107,15 @@ a {
 }
 
 .brand-btn {
-  border: none;
-  background: none;
-  padding: 0;
-  text-align: left;
-  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.scroll-hint {
+  margin: 1.25rem 0 0;
+  font-size: 0.85rem;
+  color: var(--muted);
 }
 
 .main-content {
