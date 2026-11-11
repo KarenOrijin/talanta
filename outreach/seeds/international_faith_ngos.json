@@ -1,0 +1,836 @@
+[
+  {
+    "name": "World Relief",
+    "organization": "World Relief",
+    "email": "info@worldrelief.org",
+    "region": "United States"
+  },
+  {
+    "name": "Food for the Hungry",
+    "organization": "FH Global",
+    "email": "info@fh.org",
+    "region": "United States"
+  },
+  {
+    "name": "Medical Teams International",
+    "organization": "MTI",
+    "email": "info@medicalteams.org",
+    "region": "United States"
+  },
+  {
+    "name": "World Hope International",
+    "organization": "WHI",
+    "email": "info@worldhope.org",
+    "region": "United States"
+  },
+  {
+    "name": "Food for the Poor",
+    "organization": "FFP",
+    "email": "info@foodforthepoor.org",
+    "region": "United States"
+  },
+  {
+    "name": "Cross International",
+    "organization": "Cross Int",
+    "email": "info@crossinternational.org",
+    "region": "United States"
+  },
+  {
+    "name": "Bright Hope",
+    "organization": "Bright Hope",
+    "email": "info@brighthope.org",
+    "region": "United States"
+  },
+  {
+    "name": "Heifer Project",
+    "organization": "Heifer",
+    "email": "info@heifer.org",
+    "region": "United States"
+  },
+  {
+    "name": "Plant With Purpose",
+    "organization": "PWP",
+    "email": "info@plantwithpurpose.org",
+    "region": "United States"
+  },
+  {
+    "name": "HOPE International",
+    "organization": "HOPE",
+    "email": "info@hopeinternational.org",
+    "region": "United States"
+  },
+  {
+    "name": "Lifewater International",
+    "organization": "Lifewater",
+    "email": "info@lifewater.org",
+    "region": "United States"
+  },
+  {
+    "name": "Water Mission",
+    "organization": "Water Mission",
+    "email": "info@watermission.org",
+    "region": "United States"
+  },
+  {
+    "name": "charity: water",
+    "organization": "charity: water",
+    "email": "help@charitywater.org",
+    "region": "United States"
+  },
+  {
+    "name": "The Zondervan Foundation",
+    "organization": "Zondervan Foundation",
+    "email": "info@harpercollins.com",
+    "region": "United States"
+  },
+  {
+    "name": "American Bible Society",
+    "organization": "ABS",
+    "email": "info@americanbible.org",
+    "region": "United States"
+  },
+  {
+    "name": "United Bible Societies",
+    "organization": "UBS",
+    "email": "info@unitedbiblesocieties.org",
+    "region": "International"
+  },
+  {
+    "name": "Scripture Union",
+    "organization": "SU International",
+    "email": "info@scriptureunion.global",
+    "region": "International"
+  },
+  {
+    "name": "Biblica Europe",
+    "organization": "Biblica EU",
+    "email": "info@biblica.com",
+    "region": "Europe"
+  },
+  {
+    "name": "Barnabas Fund",
+    "organization": "Barnabas",
+    "email": "info@barnabasfund.org",
+    "region": "United Kingdom"
+  },
+  {
+    "name": "Open Doors International",
+    "organization": "Open Doors",
+    "email": "info@opendoors.org",
+    "region": "International"
+  },
+  {
+    "name": "Release International",
+    "organization": "Release",
+    "email": "info@releaseinternational.org",
+    "region": "United Kingdom"
+  },
+  {
+    "name": "Voice of the Martyrs",
+    "organization": "VOM",
+    "email": "info@persecution.com",
+    "region": "United States"
+  },
+  {
+    "name": "International Justice Mission",
+    "organization": "IJM",
+    "email": "info@ijm.org",
+    "region": "United States"
+  },
+  {
+    "name": "Alpha International",
+    "organization": "Alpha",
+    "email": "info@alpha.org",
+    "region": "United Kingdom"
+  },
+  {
+    "name": "Kingsway Trust",
+    "organization": "Kingsway",
+    "email": "info@kingswaytrust.org",
+    "region": "United Kingdom"
+  },
+  {
+    "name": "SPCK",
+    "organization": "SPCK",
+    "email": "info@spck.org.uk",
+    "region": "United Kingdom"
+  },
+  {
+    "name": "CMS Britain",
+    "organization": "CMS UK",
+    "email": "info@cms-uk.org",
+    "region": "United Kingdom"
+  },
+  {
+    "name": "USPG",
+    "organization": "USPG Anglican",
+    "email": "info@uspg.org.uk",
+    "region": "United Kingdom"
+  },
+  {
+    "name": "Methodist Church Overseas",
+    "organization": "MCI",
+    "email": "info@methodist.org.uk",
+    "region": "United Kingdom"
+  },
+  {
+    "name": "BMS World Mission",
+    "organization": "BMS",
+    "email": "info@bmsworldmission.org",
+    "region": "United Kingdom"
+  },
+  {
+    "name": "Habitat for Humanity Kenya",
+    "organization": "HFH Kenya",
+    "email": "info@hfhkenya.or.ke",
+    "region": "Kenya"
+  },
+  {
+    "name": "Kenya Red Cross",
+    "organization": "KRCS",
+    "email": "info@redcross.or.ke",
+    "region": "Kenya"
+  },
+  {
+    "name": "World Vision Kenya",
+    "organization": "WV Kenya",
+    "email": "wvkenya@worldvision.org",
+    "region": "Kenya"
+  },
+  {
+    "name": "Compassion Kenya",
+    "organization": "Compassion KE",
+    "email": "info@compassion.com",
+    "region": "Kenya"
+  },
+  {
+    "name": "Food for the Hungry Kenya",
+    "organization": "FH Kenya",
+    "email": "info@fh.org",
+    "region": "Kenya"
+  },
+  {
+    "name": "Samaritan's Purse Kenya",
+    "organization": "SP Kenya",
+    "email": "info@samaritanspurse.org",
+    "region": "Kenya"
+  },
+  {
+    "name": "Africa Enterprise Kenya",
+    "organization": "AE Kenya",
+    "email": "info@africanenterprise.com",
+    "region": "Kenya"
+  },
+  {
+    "name": "CMS Africa Nairobi",
+    "organization": "CMS Nairobi",
+    "email": "info@cms-africa.org",
+    "region": "Kenya"
+  },
+  {
+    "name": "Fellowship of Christian Unions Kenya",
+    "organization": "FOCUS Kenya",
+    "email": "info@focuskenya.org",
+    "region": "Kenya"
+  },
+  {
+    "name": "Kenya Church Planting",
+    "organization": "KCP",
+    "email": "info@kcp.org",
+    "region": "Kenya"
+  },
+  {
+    "name": "Pan Africa Christian University",
+    "organization": "PACU",
+    "email": "info@pau.ac.ke",
+    "region": "Kenya"
+  },
+  {
+    "name": "Daystar University",
+    "organization": "Daystar",
+    "email": "info@daystar.ac.ke",
+    "region": "Kenya"
+  },
+  {
+    "name": "Kabarak University",
+    "organization": "Kabarak",
+    "email": "info@kabarak.ac.ke",
+    "region": "Kenya"
+  },
+  {
+    "name": "Scott Christian University",
+    "organization": "SCU",
+    "email": "info@scott.ac.ke",
+    "region": "Kenya"
+  },
+  {
+    "name": "St Paul's University",
+    "organization": "SPU",
+    "email": "info@spu.ac.ke",
+    "region": "Kenya"
+  },
+  {
+    "name": "International Christian Ministries",
+    "organization": "ICM",
+    "email": "info@icmusa.org",
+    "region": "United States"
+  },
+  {
+    "name": "EFCA ReachGlobal",
+    "organization": "EFCA",
+    "email": "info@efca.org",
+    "region": "United States"
+  },
+  {
+    "name": "Nazarene Compassionate Ministries",
+    "organization": "NCM",
+    "email": "info@ncm.org",
+    "region": "United States"
+  },
+  {
+    "name": "Wesleyan World Mission",
+    "organization": "WWM",
+    "email": "info@wesleyan.org",
+    "region": "United States"
+  },
+  {
+    "name": "Free Methodist World Missions",
+    "organization": "FMWM",
+    "email": "info@fmcusa.org",
+    "region": "United States"
+  },
+  {
+    "name": "Church of the Nazarene Global",
+    "organization": "Nazarene",
+    "email": "info@nazarene.org",
+    "region": "United States"
+  },
+  {
+    "name": "Seventh-day Adventist ADRA",
+    "organization": "ADRA",
+    "email": "info@adra.org",
+    "region": "International"
+  },
+  {
+    "name": "Orthodox Christian Mission Center",
+    "organization": "OCMC",
+    "email": "info@ocmc.org",
+    "region": "United States"
+  },
+  {
+    "name": "Melkite Catholic Mission",
+    "organization": "MCM",
+    "email": "info@melkite.org",
+    "region": "United States"
+  },
+  {
+    "name": "Maryknoll Lay Missioners",
+    "organization": "Maryknoll",
+    "email": "info@mklm.org",
+    "region": "United States"
+  },
+  {
+    "name": "Divine Word Missionaries",
+    "organization": "SVD",
+    "email": "info@svdmissions.org",
+    "region": "United States"
+  },
+  {
+    "name": "Maryknoll Fathers",
+    "organization": "Maryknoll Fathers",
+    "email": "info@maryknoll.org",
+    "region": "United States"
+  },
+  {
+    "name": "Holy Cross Missions",
+    "organization": "CSC",
+    "email": "info@cscprovidence.org",
+    "region": "United States"
+  },
+  {
+    "name": "Franciscan Missions",
+    "organization": "Franciscan",
+    "email": "info@franciscanmissionassoc.org",
+    "region": "United States"
+  },
+  {
+    "name": "Salesian Missions",
+    "organization": "Salesian",
+    "email": "info@salesianmissions.org",
+    "region": "United States"
+  },
+  {
+    "name": "Jesuit Missions UK",
+    "organization": "Jesuit UK",
+    "email": "info@jesuitmissions.org.uk",
+    "region": "United Kingdom"
+  },
+  {
+    "name": "Mill Hill Missionaries",
+    "organization": "Mill Hill",
+    "email": "info@millhillmissionaries.com",
+    "region": "United Kingdom"
+  },
+  {
+    "name": "Catholic Mission",
+    "organization": "Catholic Mission AU",
+    "email": "info@catholicmission.org.au",
+    "region": "Australia"
+  },
+  {
+    "name": "Caritas International",
+    "organization": "Caritas",
+    "email": "info@caritas.org",
+    "region": "International"
+  },
+  {
+    "name": "Catholic Relief Services Kenya",
+    "organization": "CRS Kenya",
+    "email": "information@crs.org",
+    "region": "Kenya"
+  },
+  {
+    "name": "Lutheran World Federation",
+    "organization": "LWF",
+    "email": "info@lutheranworld.org",
+    "region": "International"
+  },
+  {
+    "name": "WACC Global",
+    "organization": "WACC",
+    "email": "info@waccglobal.org",
+    "region": "International"
+  },
+  {
+    "name": "Micah Network",
+    "organization": "Micah",
+    "email": "info@micahnetwork.org",
+    "region": "International"
+  },
+  {
+    "name": "Integral Alliance",
+    "organization": "Integral",
+    "email": "info@integralalliance.org",
+    "region": "International"
+  },
+  {
+    "name": "CHS Alliance",
+    "organization": "CHS",
+    "email": "info@chsalliance.org",
+    "region": "International"
+  },
+  {
+    "name": "ACT Alliance",
+    "organization": "ACT",
+    "email": "info@actalliance.org",
+    "region": "International"
+  },
+  {
+    "name": "Global Connections UK",
+    "organization": "Global Connections",
+    "email": "info@globalconnections.org.uk",
+    "region": "United Kingdom"
+  },
+  {
+    "name": "Proclaimers of the Word",
+    "organization": "POW",
+    "email": "info@powmissions.org",
+    "region": "United States"
+  },
+  {
+    "name": "Equip International",
+    "organization": "Equip",
+    "email": "info@equip.org",
+    "region": "United States"
+  },
+  {
+    "name": "Pioneering Leadership",
+    "organization": "PLI",
+    "email": "info@plint.org",
+    "region": "United States"
+  },
+  {
+    "name": "Leadership Network",
+    "organization": "LN",
+    "email": "info@leadnet.org",
+    "region": "United States"
+  },
+  {
+    "name": "Exponential",
+    "organization": "Exponential",
+    "email": "info@exponential.org",
+    "region": "United States"
+  },
+  {
+    "name": "Carey International",
+    "organization": "Carey",
+    "email": "info@carey.edu.au",
+    "region": "Australia"
+  },
+  {
+    "name": "Global Church Movements",
+    "organization": "GCM",
+    "email": "info@gcm.org",
+    "region": "United States"
+  },
+  {
+    "name": "Send Institute",
+    "organization": "Send Institute",
+    "email": "info@sendinstitute.org",
+    "region": "United States"
+  },
+  {
+    "name": "Lausanne Movement",
+    "organization": "Lausanne",
+    "email": "info@lausanne.org",
+    "region": "International"
+  },
+  {
+    "name": "The Lausanne Covenant",
+    "organization": "Lausanne Africa",
+    "email": "info@lausanne.org",
+    "region": "Africa"
+  },
+  {
+    "name": "Transformation Africa",
+    "organization": "TAI",
+    "email": "info@transformationalindex.org",
+    "region": "Africa"
+  },
+  {
+    "name": "Transformational Business Network",
+    "organization": "TBN",
+    "email": "info@tbnetwork.org",
+    "region": "International"
+  },
+  {
+    "name": "BAM Global",
+    "organization": "BAM",
+    "email": "info@bamglobal.org",
+    "region": "International"
+  },
+  {
+    "name": "Business as Mission",
+    "organization": "BAM Alliance",
+    "email": "info@bamthinktank.org",
+    "region": "International"
+  },
+  {
+    "name": "Christian Economic Forum",
+    "organization": "CEF",
+    "email": "info@christianeconomicforum.com",
+    "region": "International"
+  },
+  {
+    "name": "Kingdom Advisors",
+    "organization": "KA",
+    "email": "info@kingdomadvisors.com",
+    "region": "United States"
+  },
+  {
+    "name": "Ronald Blue Trust",
+    "organization": "RBT",
+    "email": "info@ronblue.com",
+    "region": "United States"
+  },
+  {
+    "name": "Christian Financial Professionals",
+    "organization": "CFP Ministry",
+    "email": "info@thekingdomadvisors.com",
+    "region": "United States"
+  },
+  {
+    "name": "Crown Financial Ministries",
+    "organization": "Crown",
+    "email": "info@crown.org",
+    "region": "United States"
+  },
+  {
+    "name": "Dave Ramsey Solutions",
+    "organization": "Ramsey",
+    "email": "help@daveramsey.com",
+    "region": "United States"
+  },
+  {
+    "name": "Financial Peace Church",
+    "organization": "Ramsey Church",
+    "email": "info@daveramsey.com",
+    "region": "United States"
+  },
+  {
+    "name": "Thrivent Financial",
+    "organization": "Thrivent",
+    "email": "info@thrivent.com",
+    "region": "United States"
+  },
+  {
+    "name": "GuideStone Financial",
+    "organization": "GuideStone",
+    "email": "info@guidestone.org",
+    "region": "United States"
+  },
+  {
+    "name": "InFaith Community Foundation",
+    "organization": "InFaith CF",
+    "email": "info@infaith.org",
+    "region": "United States"
+  },
+  {
+    "name": "Gift Planning Development",
+    "organization": "GPD",
+    "email": "info@giftplanningdevelopment.com",
+    "region": "United States"
+  },
+  {
+    "name": "Philanthropy Roundtable",
+    "organization": "PR",
+    "email": "info@philanthropyroundtable.org",
+    "region": "United States"
+  },
+  {
+    "name": "Chronicle of Philanthropy",
+    "organization": "CoP",
+    "email": "info@philanthropy.com",
+    "region": "United States"
+  },
+  {
+    "name": "Council on Foundations",
+    "organization": "COF",
+    "email": "info@cof.org",
+    "region": "United States"
+  },
+  {
+    "name": "Exponent Philanthropy",
+    "organization": "Exponent",
+    "email": "info@exponentphilanthropy.org",
+    "region": "United States"
+  },
+  {
+    "name": "Giving USA Foundation",
+    "organization": "Giving USA",
+    "email": "info@givingusa.org",
+    "region": "United States"
+  },
+  {
+    "name": "Indiana University Lilly Family School",
+    "organization": "IUPUI Philanthropy",
+    "email": "info@iupui.edu",
+    "region": "United States"
+  },
+  {
+    "name": "Global Philanthropy Forum",
+    "organization": "GPF",
+    "email": "info@philanthropyforum.org",
+    "region": "International"
+  },
+  {
+    "name": "Charities Aid Foundation",
+    "organization": "CAF",
+    "email": "info@cafonline.org",
+    "region": "United Kingdom"
+  },
+  {
+    "name": "CAF America",
+    "organization": "CAF America",
+    "email": "info@cafamerica.org",
+    "region": "United States"
+  },
+  {
+    "name": "CAF Canada",
+    "organization": "CAF Canada",
+    "email": "info@cafcanada.ca",
+    "region": "Canada"
+  },
+  {
+    "name": "GiveWell",
+    "organization": "GiveWell",
+    "email": "info@givewell.org",
+    "region": "United States"
+  },
+  {
+    "name": "Effective Altruism",
+    "organization": "EA Funds",
+    "email": "info@effectivealtruism.org",
+    "region": "International"
+  },
+  {
+    "name": "Focus on the Family",
+    "organization": "FOF",
+    "email": "info@focusonthefamily.com",
+    "region": "United States"
+  },
+  {
+    "name": "Family Life",
+    "organization": "FamilyLife",
+    "email": "info@familylife.com",
+    "region": "United States"
+  },
+  {
+    "name": "Marriage Today",
+    "organization": "MT",
+    "email": "info@marragetoday.com",
+    "region": "United States"
+  },
+  {
+    "name": "Dobson Family Institute",
+    "organization": "DFI",
+    "email": "info@drjamesdobson.org",
+    "region": "United States"
+  },
+  {
+    "name": "Family Research Council",
+    "organization": "FRC",
+    "email": "info@frc.org",
+    "region": "United States"
+  },
+  {
+    "name": "American Family Association",
+    "organization": "AFA",
+    "email": "info@afa.net",
+    "region": "United States"
+  },
+  {
+    "name": "Christian Educators Association",
+    "organization": "CEAI",
+    "email": "info@ceai.org",
+    "region": "United States"
+  },
+  {
+    "name": "Association of Christian Schools International",
+    "organization": "ACSI",
+    "email": "info@acsi.org",
+    "region": "United States"
+  },
+  {
+    "name": "Council for Christian Colleges",
+    "organization": "CCCU",
+    "email": "info@cccu.org",
+    "region": "United States"
+  },
+  {
+    "name": "National Christian Foundation Canada",
+    "organization": "NCF Canada",
+    "email": "info@ncf.ca",
+    "region": "Canada"
+  },
+  {
+    "name": "Cardus",
+    "organization": "Cardus",
+    "email": "info@cardus.ca",
+    "region": "Canada"
+  },
+  {
+    "name": "World Renew",
+    "organization": "World Renew",
+    "email": "info@worldrenew.net",
+    "region": "Canada"
+  },
+  {
+    "name": "Mennonite Central Committee",
+    "organization": "MCC",
+    "email": "info@mcc.org",
+    "region": "Canada"
+  },
+  {
+    "name": "Mennonite Brethren Mission",
+    "organization": "MB Mission",
+    "email": "info@mbmission.org",
+    "region": "Canada"
+  },
+  {
+    "name": "Orthodox Christian Coalition for Africa",
+    "organization": "OCCA",
+    "email": "info@occafrica.org",
+    "region": "Africa"
+  },
+  {
+    "name": "AMECEA",
+    "organization": "AMECEA",
+    "email": "info@amecea.org",
+    "region": "Africa"
+  },
+  {
+    "name": "All Africa Conference of Churches",
+    "organization": "AACC",
+    "email": "info@aacc-ceta.org",
+    "region": "Africa"
+  },
+  {
+    "name": "PACIENTA",
+    "organization": "PACIENTA",
+    "email": "info@pacienta.org",
+    "region": "Africa"
+  },
+  {
+    "name": "SACC South Africa",
+    "organization": "SACC",
+    "email": "info@sacc.org.za",
+    "region": "South Africa"
+  },
+  {
+    "name": "NZ Christian Network",
+    "organization": "NZCN",
+    "email": "info@nzchristiannetwork.org.nz",
+    "region": "New Zealand"
+  },
+  {
+    "name": "Singapore Bible College",
+    "organization": "SBC",
+    "email": "info@sbc.edu.sg",
+    "region": "Singapore"
+  },
+  {
+    "name": "Operation Mobilisation",
+    "organization": "OM",
+    "email": "info@om.org",
+    "region": "International"
+  },
+  {
+    "name": "WEC International",
+    "organization": "WEC",
+    "email": "info@wec-uk.org",
+    "region": "United Kingdom"
+  },
+  {
+    "name": "Interserve",
+    "organization": "Interserve",
+    "email": "info@interserve.org",
+    "region": "United Kingdom"
+  },
+  {
+    "name": "Latin Link",
+    "organization": "Latin Link",
+    "email": "info@latinlink.org",
+    "region": "United Kingdom"
+  },
+  {
+    "name": "CMS Ireland",
+    "organization": "CMS IE",
+    "email": "info@cmsireland.eu",
+    "region": "Ireland"
+  },
+  {
+    "name": "Tearfund New Zealand",
+    "organization": "Tearfund NZ",
+    "email": "info@tearfund.org.nz",
+    "region": "New Zealand"
+  },
+  {
+    "name": "Baptist World Aid Australia",
+    "organization": "BWA AU",
+    "email": "info@baptistworldaid.org.au",
+    "region": "Australia"
+  },
+  {
+    "name": "Baptist Mission Australia",
+    "organization": "BMA",
+    "email": "info@baptistmissionaustralia.org",
+    "region": "Australia"
+  },
+  {
+    "name": "Global Interaction",
+    "organization": "Global Interaction",
+    "email": "info@globalinteraction.org",
+    "region": "Australia"
+  }
+]
