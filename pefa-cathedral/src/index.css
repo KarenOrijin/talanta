@@ -118,6 +118,24 @@ a {
   color: var(--muted);
 }
 
+.hero-subhead {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  margin: 1.75rem 0 0.5rem;
+  color: var(--ink);
+}
+
+.hero-trust {
+  max-width: 640px;
+  margin: 1.25rem auto 0;
+  padding: 1rem 1.15rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: var(--radius);
+  border-left: 4px solid var(--gold);
+  font-size: 0.92rem;
+  text-align: left;
+}
+
 .main-content {
   min-height: 60vh;
 }

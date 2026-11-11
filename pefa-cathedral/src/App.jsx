@@ -168,28 +168,37 @@ export default function App() {
               <p className="eyebrow">Cathedral Coach Project · {CHURCH.denomination}</p>
               <h1>A ministry coach for Webuye and beyond</h1>
               <p className="hero-lead">
-                We are purchasing a coach to carry our congregation, choir, youth, and mission teams to services,
-                outreach, and community events across Bungoma County. The vehicle costs {formatKsh(coachCost)}. Our members
-                have already given {formatKsh(raised)} with every shilling recorded on our live tracker. We invite partners
-                to help us complete what our church has begun.
+                PEFA Cathedral Webuye is raising {formatKsh(coachCost)} for a ministry coach. The vehicle will serve our
+                congregation, choir, youth, and mission teams across Bungoma County. Members have already given{' '}
+                {formatKsh(raised)} and every shilling is on our live tracker. We are asking partners to help us finish
+                the purchase.
               </p>
+              <h2 className="hero-subhead">Why this coach matters</h2>
               <div className="hero-coach-points">
                 <ul>
-                  <li>Safe transport for elders, children, and rural members</li>
-                  <li>Outreach beyond the cathedral walls</li>
-                  <li>Official receipts, committee oversight, honour roll for partners</li>
+                  <li>Bring elders, children, and rural members to church safely each Sunday</li>
+                  <li>Reach villages for outreach, prayer, and community care beyond Webuye town</li>
+                  <li>Move choirs, youth, and teams without hiring costly transport every week</li>
+                  <li>Support weddings, funerals, and county wide ministry events with one reliable coach</li>
                 </ul>
+              </div>
+              <div className="hero-trust">
+                <p>
+                  <strong>Accountability:</strong> Paybill {GIVING.mpesaPaybill}, official receipts, named committee,
+                  honour roll for partners at dedication.
+                </p>
               </div>
               <div className="hero-actions">
                 <a className="btn btn-gold" href="#give">Support the coach</a>
                 <a className="btn btn-ghost" href="#tracker">See live progress</a>
               </div>
-              <p className="scroll-hint">Scroll down for our story, live tracker, and how to give</p>
+              <p className="scroll-hint">Scroll for our church story (mud house to today), live tracker, and how to give</p>
               {summary && (
                 <div className="hero-stats">
                   <div><span className="stat-val">{formatKsh(coachCost)}</span><span className="stat-lbl">coach goal</span></div>
                   <div><span className="stat-val">{formatKsh(summary.raisedKsh)}</span><span className="stat-lbl">raised so far</span></div>
                   <div><span className="stat-val">{summary.membersPaying}</span><span className="stat-lbl">members giving</span></div>
+                  <div><span className="stat-val">{summary.groupsActive ?? 14}</span><span className="stat-lbl">giving groups</span></div>
                 </div>
               )}
             </div>
@@ -209,20 +218,15 @@ export default function App() {
                   Sunday by Sunday, gift by gift, that faithfulness built the church we worship in today.
                 </p>
                 <p>
-                  We learned to give, to wait, and to trust. We learned accountability because every gift mattered. That same
-                  spirit now drives the coach project: members organised first, gave first, and opened the books for the
-                  committee to see.
+                  We learned to give, to wait, and to trust. We learned accountability because every gift mattered. That
+                  discipline still defines who we are as a church.
                 </p>
                 <p>
-                  Having built a house of worship, we are ready for the next step. We want to take the church to the people.
-                  The coach is not a luxury. It is how we serve Webuye beyond our four walls.
+                  Today we worship in a building we built together. The mud house chapter is behind us; the coach project on
+                  the home page is how we take that same faith into the streets and villages around Webuye.
                 </p>
-                <h3 className="subhead">What members have done for the coach</h3>
-                <ul className="pillars">
-                  <li>Since May 2026, {summary?.membersOrganized ?? 182} members in {summary?.groupsActive ?? 14} groups pledged KSh 4.3 million</li>
-                  <li>{summary?.membersPaying ?? 133} members have given {formatKsh(summary?.raisedKsh ?? 1_309_820)} Sunday after Sunday</li>
-                  <li>Digital payment tracker updated weekly for full transparency</li>
-                </ul>
+                <a className="text-link" href="#home">Back to coach project</a>
+                {' · '}
                 <a className="text-link" href="#about">About our church</a>
               </div>
               <aside className="story-card">
