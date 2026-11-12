@@ -12,20 +12,24 @@
     min-height: 100vh;
     background: #f7faf8;
     color: #0e1b14;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 24px;
   }
   .card {
-    max-width: 520px;
-    margin: 0 auto;
+    max-width: 480px;
+    width: 100%;
     background: #fff;
     border: 1px solid #d8e5df;
     border-radius: 12px;
     padding: 28px 24px;
   }
   h1 { font-size: 1.25rem; margin: 0 0 8px; }
-  .sub { font-size: 0.9rem; color: #4a5c54; margin-bottom: 20px; line-height: 1.45; }
+  .sub { font-size: 0.9rem; color: #4a5c54; margin-bottom: 24px; line-height: 1.45; }
   .stat { font-size: 0.85rem; background: #e1f5ee; color: #0d5c44; padding: 8px 12px; border-radius: 8px; margin-bottom: 16px; }
-  a.lead-dl {
+  .err { display: none; font-size: 0.85rem; background: #fde8e8; color: #8b1a1a; padding: 10px 12px; border-radius: 8px; margin-bottom: 12px; }
+  button.lead-dl {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -33,52 +37,104 @@
     padding: 14px 16px;
     margin: 10px 0;
     background: #1d9e75;
-    color: #fff !important;
+    color: #fff;
     border-radius: 8px;
     font-weight: 600;
     font-size: 0.95rem;
-    text-decoration: none;
+    border: none;
+    cursor: pointer;
     width: 100%;
+    text-align: left;
   }
-  a.lead-dl:hover { background: #157a5c; }
-  a.lead-dl.alt { background: #378add; }
-  a.lead-dl.alt:hover { background: #2a6cb0; }
-  a.lead-dl.pack { background: #0e1b14; }
-  a.lead-dl.pack:hover { background: #1a2e24; }
+  button.lead-dl:hover:not(:disabled) { background: #157a5c; }
+  button.lead-dl.alt { background: #378add; }
+  button.lead-dl.alt:hover:not(:disabled) { background: #2a6cb0; }
+  button.lead-dl.pack { background: #0e1b14; }
+  button.lead-dl.pack:hover:not(:disabled) { background: #1a2e24; }
+  button.lead-dl:disabled { opacity: 0.65; cursor: wait; }
   .arrow { opacity: 0.9; font-size: 1.1rem; }
   .tip { font-size: 0.8rem; color: #6b7d75; margin-top: 16px; line-height: 1.5; }
-  .backup { font-size: 0.8rem; margin-top: 20px; padding-top: 16px; border-top: 1px solid #e8ece9; }
-  .backup a { color: #378add; display: block; margin: 6px 0; word-break: break-all; }
+  .backup { font-size: 0.75rem; margin-top: 12px; }
+  .backup a { color: #378add; word-break: break-all; }
   </style>
 </head>
 <body>
   <div class="card">
-    <h1>Coach project — download leads</h1>
-    <p class="sub">Tap a green or blue link. Your phone or computer saves the file immediately (no sign in).</p>
-    <p class="stat"><strong>1,400</strong> contacts: organizations + wealthy Christian partners</p>
+    <h1>Coach project — outreach leads</h1>
+    <p class="sub">Tap a button. The file downloads to your phone or computer.</p>
+    <p class="stat"><strong>1,400</strong> leads (1,000 orgs + 400 wealthy Christians)</p>
+    <p id="err" class="err"></p>
 
-    <a class="lead-dl" href="PEFA_Coach_MASTER_LEADS_1400.xlsx" download="PEFA_Coach_MASTER_LEADS_1400.xlsx">
-      <span>Excel — 1,400 master leads</span><span class="arrow">↓</span>
-    </a>
-    <a class="lead-dl alt" href="HNW_CHRISTIAN_PHILANTHROPISTS_400.xlsx" download="HNW_CHRISTIAN_PHILANTHROPISTS_400.xlsx">
-      <span>Excel — 400 wealthy Christians</span><span class="arrow">↓</span>
-    </a>
-    <a class="lead-dl alt" href="GLOBAL_PHILANTHROPY_LEADS_1000.xlsx" download="GLOBAL_PHILANTHROPY_LEADS_1000.xlsx">
-      <span>Excel — 1,000 organizations</span><span class="arrow">↓</span>
-    </a>
-    <a class="lead-dl pack" href="PEFA_Coach_Leads_Pack.zip" download="PEFA_Coach_Leads_Pack.zip">
-      <span>ZIP — all lists</span><span class="arrow">↓</span>
-    </a>
-    <a class="lead-dl alt" href="Cathedral_Coach_Payment_Tracker_Dashboard.xlsx" download="Cathedral_Coach_Payment_Tracker_Dashboard.xlsx">
-      <span>Payment tracker dashboard</span><span class="arrow">↓</span>
-    </a>
+    <button type="button" class="lead-dl" data-file="PEFA_Coach_MASTER_LEADS_1400.xlsx">
+      <span class="label">Excel — 1,400 master leads</span><span class="arrow">↓</span>
+    </button>
+    <button type="button" class="lead-dl alt" data-file="HNW_CHRISTIAN_PHILANTHROPISTS_400.xlsx">
+      <span class="label">Excel — 400 wealthy Christians</span><span class="arrow">↓</span>
+    </button>
+    <button type="button" class="lead-dl pack" data-file="PEFA_Coach_Leads_Pack.zip">
+      <span class="label">Download everything (ZIP)</span><span class="arrow">↓</span>
+    </button>
+    <button type="button" class="lead-dl alt" data-file="PEFA_Coach_Leads_All_Contacts.xlsx">
+      <span class="label">Excel — Kenya 313 list</span><span class="arrow">↓</span>
+    </button>
+    <button type="button" class="lead-dl alt" data-file="ALL_CONTACTS_ONE_LIST.csv">
+      <span class="label">CSV — all contacts</span><span class="arrow">↓</span>
+    </button>
+    <button type="button" class="lead-dl alt" data-file="Cathedral_Coach_Payment_Tracker_Dashboard.xlsx">
+      <span class="label">Payment tracker dashboard</span><span class="arrow">↓</span>
+    </button>
 
-    <p class="tip">If a tap opens the file instead of downloading, long-press the link and choose <strong>Download</strong>, or use a backup link below.</p>
-    <div class="backup">
-      <strong>Backup links (GitHub):</strong>
-      <a href="https://raw.githubusercontent.com/KarenOrijin/talanta/cursor/pefa-coach-outreach-contacts-4c6c/coach-leads/PEFA_Coach_MASTER_LEADS_1400.xlsx">Master 1,400 Excel (raw)</a>
-      <a href="https://github.com/KarenOrijin/talanta/raw/cursor/pefa-coach-outreach-contacts-4c6c/coach-leads/PEFA_Coach_MASTER_LEADS_1400.xlsx">Master 1,400 Excel (download)</a>
-    </div>
+    <p class="tip">If a button sticks on “Downloading…”, use the backup link below that file on GitHub.</p>
+    <p class="backup">Backup (always works in browser):<br>
+      <a id="backup-excel" href="#" target="_blank" rel="noopener">Open Excel on GitHub</a>
+    </p>
   </div>
+  <script>
+    const REPO = 'https://github.com/KarenOrijin/talanta/raw/cursor/pefa-coach-outreach-contacts-4c6c/coach-leads/';
+    const RAW = 'https://raw.githubusercontent.com/KarenOrijin/talanta/cursor/pefa-coach-outreach-contacts-4c6c/coach-leads/';
+
+    document.getElementById('backup-excel').href = REPO + 'PEFA_Coach_Leads_All_Contacts.xlsx';
+
+    async function downloadFile(file, btn) {
+      const errEl = document.getElementById('err');
+      errEl.style.display = 'none';
+      const label = btn.querySelector('.label');
+      const original = label.textContent;
+      btn.disabled = true;
+      label.textContent = 'Downloading…';
+
+      const urls = ['./' + file, RAW + file, REPO + file];
+
+      for (const url of urls) {
+        try {
+          const res = await fetch(url);
+          if (!res.ok) continue;
+          const blob = await res.blob();
+          const objectUrl = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = objectUrl;
+          a.download = file;
+          a.style.display = 'none';
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          URL.revokeObjectURL(objectUrl);
+          label.textContent = 'Downloaded ✓';
+          setTimeout(() => { label.textContent = original; btn.disabled = false; }, 2000);
+          return;
+        } catch (_) { /* try next */ }
+      }
+
+      label.textContent = original;
+      btn.disabled = false;
+      errEl.textContent = 'Could not fetch file here. Tap the GitHub backup link below.';
+      errEl.style.display = 'block';
+      window.open(REPO + file, '_blank', 'noopener,noreferrer');
+    }
+
+    document.querySelectorAll('button.lead-dl').forEach((btn) => {
+      btn.addEventListener('click', () => downloadFile(btn.dataset.file, btn));
+    });
+  </script>
 </body>
 </html>
