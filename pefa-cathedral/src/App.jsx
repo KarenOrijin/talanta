@@ -235,6 +235,7 @@ export default function App() {
                   for God loves a cheerful giver.
                 </p>
                 <p className="quote-by">2 Corinthians 9:7</p>
+                <p className="quote-byline">Coach Project Committee · PEFA Cathedral Webuye</p>
               </aside>
             </div>
           </section>
